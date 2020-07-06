@@ -42,7 +42,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-<!--    <include layout="@layout/activity_home_recycle1"/>-->
+
 
 <!--    <androidx.viewpager.widget.ViewPager-->
 <!--        android:id="@+id/viewpager"-->

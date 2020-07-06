@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         >
 
+        <!-- 천연 탈취제  -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycle01"
             android:layout_width="match_parent"
