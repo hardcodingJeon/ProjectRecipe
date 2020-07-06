@@ -40,9 +40,14 @@
             app:tabTextColor="#FFAAAAAA"
             />
 
-
-
-
     </com.google.android.material.appbar.AppBarLayout>
+
+<!--    <include layout="@layout/activity_home_recycle1"/>-->
+
+<!--    <androidx.viewpager.widget.ViewPager-->
+<!--        android:id="@+id/viewpager"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        />-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
