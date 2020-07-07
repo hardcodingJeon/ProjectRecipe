@@ -18,6 +18,7 @@
             android:layout_height="350dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="horizontal"
+            android:scrollIndicators="end"
             />
 
 

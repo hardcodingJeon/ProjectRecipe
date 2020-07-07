@@ -5,6 +5,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 
+import com.google.android.material.tabs.TabLayout;
+import com.sonlcr1.projectrecipe.adapter.PagerAdapter;
 import com.sonlcr1.projectrecipe.member.Choice;
 
 import java.util.ArrayList;
@@ -17,6 +19,8 @@ import retrofit2.Retrofit;
 public class MainActivity extends AppCompatActivity {
 
     ViewPager viewPager;
+    TabLayout tabLayout;
+    PagerAdapter pagerAdapter;
 
     //MyAdapter adapter;
     @Override
@@ -24,7 +28,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //AAA
+        viewPager = findViewById(R.id.viewpager);
+        tabLayout = findViewById(R.id.tablayout);
+
+        pagerAdapter = new PagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(pagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
+
         
 
     }

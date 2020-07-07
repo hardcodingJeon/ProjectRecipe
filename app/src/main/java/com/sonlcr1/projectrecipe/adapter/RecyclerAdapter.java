@@ -45,9 +45,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
         VH vh = (VH)holder;
         Choice items = datas.get(position);
 
+        String imgUrl = "http://jeondh9971.dothome.co.kr/Recipe/recipeChoice/" + items.img;
+
         vh.tvSubject.setText(items.subject);
         vh.tvTitle.setText(items.title);
-        Glide.with(context).load(items.img).into(vh.imgMain);
+        Glide.with(context).load(imgUrl).into(vh.imgMain);
 
     }
 
