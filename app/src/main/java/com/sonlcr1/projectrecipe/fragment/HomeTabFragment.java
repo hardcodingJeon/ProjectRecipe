@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,12 +17,15 @@ import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
+import com.bumptech.glide.Glide;
 import com.sonlcr1.projectrecipe.R;
 import com.sonlcr1.projectrecipe.RetrofitHelper;
 import com.sonlcr1.projectrecipe.RetrofitService;
 import com.sonlcr1.projectrecipe.adapter.RecyclerAdapter;
 import com.sonlcr1.projectrecipe.member.Choice;
+import com.sonlcr1.projectrecipe.member.Summer;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -30,10 +35,15 @@ import retrofit2.Retrofit;
 
 public class HomeTabFragment extends Fragment {
 
+    String imgUrl = "http://jeondh9971.dothome.co.kr/Recipe";  //뒤에 주소 덧 붙여야함
+
+    TextView tv, tvSub;
+    ImageView iv;
 
     //HomeAdapter1 homeAdapter1;
     RecyclerView recyclerView;
     ArrayList<Choice> datas = new ArrayList<>();
+    ArrayList<Summer> datasSummer = new ArrayList<>();
     Context context;
     RecyclerAdapter recyclerAdapter;
     FragmentActivity fragmentActivity;
@@ -48,6 +58,7 @@ public class HomeTabFragment extends Fragment {
         fragmentActivity = getActivity();
         context = getContext();
 
+        // Choice recyclerview
         Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
         RetrofitService retrofitService = retrofit.create(RetrofitService.class);
         Call<ArrayList<Choice>> call = retrofitService.getChoiceArray();
@@ -69,10 +80,6 @@ public class HomeTabFragment extends Fragment {
 
                 }
 
-                //Log.e("length",items.get(0).title+", "+items.get(1).title+", "+items.get(2).title);
-
-                Log.e("length1",datas.size()+", ");
-
             }
 
             @Override
@@ -80,13 +87,38 @@ public class HomeTabFragment extends Fragment {
 
             }
         });
-        //Log.e("length",datas.get(0).title+", "+datas.get(1).title+", "+datas.get(2).title);
+
+        Call<ArrayList<Summer>> call2 = retrofitService.getSummerArray();
+        call2.enqueue(new Callback<ArrayList<Summer>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Summer>> call, Response<ArrayList<Summer>> response) {
+                if (response != null) {
+                    ArrayList<Summer> item = response.body();
+                    datasSummer.addAll(item);
+
+                    tvSub = getActivity().findViewById(R.id.tv_sub);
+                    tvSub.setText(datasSummer.size()+"개의 레시피");
+
+                    for (int i=0 ; i<3 ; i++){
+                        iv = fragmentActivity.findViewById(R.id.iv_01+i);
+                        Glide.with(context).load(imgUrl+"/recipeSummer/"+datasSummer.get(i).img).into(iv);
+                        //Glide.with(context).load(R.drawable.moana).into(iv);
 
 
+                        Log.e("url",imgUrl+"/recipeSummer/"+datasSummer.get(i).img);
 
+                        tv = fragmentActivity.findViewById(R.id.tv_01+i);
+                        tv.setText(datasSummer.get(i).title);
+                    }
 
-        //Log.e("tag",datas.get(0).title+", "+datas.get(1).title+", "+datas.get(2).title);
+                }
+            }
 
+            @Override
+            public void onFailure(Call<ArrayList<Summer>> call, Throwable t) {
+
+            }
+        });
 
         return view;
     }
