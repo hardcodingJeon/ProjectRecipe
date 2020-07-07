@@ -90,4 +90,11 @@ public class HomeTabFragment extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        datas.removeAll(datas);
+        recyclerAdapter.notifyDataSetChanged();
+    }
 }
