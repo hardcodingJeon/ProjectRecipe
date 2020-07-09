@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,20 +15,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
-import com.bumptech.glide.Glide;
 import com.sonlcr1.projectrecipe.R;
 import com.sonlcr1.projectrecipe.RetrofitHelper;
 import com.sonlcr1.projectrecipe.RetrofitService;
-import com.sonlcr1.projectrecipe.adapter.RecyclerAdapter;
-import com.sonlcr1.projectrecipe.member.Choice;
-import com.sonlcr1.projectrecipe.member.Summer;
+import com.sonlcr1.projectrecipe.adapter.HomeChoiceAdapter;
+import com.sonlcr1.projectrecipe.adapter.HomeNormalAdapter;
+import com.sonlcr1.projectrecipe.member.HomeChoice;
+import com.sonlcr1.projectrecipe.member.HomeNormal;
+import com.sonlcr1.projectrecipe.member.HomeSummer;
 import com.squareup.picasso.Picasso;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -43,13 +45,19 @@ public class HomeTabFragment extends Fragment {
     TextView tv, tvSub;
     ImageView iv;
 
-    //HomeAdapter1 homeAdapter1;
-    RecyclerView recyclerView;
-    ArrayList<Choice> datas = new ArrayList<>();
-    ArrayList<Summer> datasSummer = new ArrayList<>();
     Context context;
-    RecyclerAdapter recyclerAdapter;
     FragmentActivity fragmentActivity;
+
+    RecyclerView recyclerView;
+    RecyclerView recyclergrid;
+
+    ArrayList<HomeChoice> datas = new ArrayList<>();
+    ArrayList<HomeSummer> datasSummer = new ArrayList<>();
+    ArrayList<HomeNormal> datasNormal = new ArrayList<>();
+
+
+    HomeChoiceAdapter recyclerAdapter;
+    HomeNormalAdapter normalAdapter;
 
 
     @Nullable
@@ -58,24 +66,24 @@ public class HomeTabFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_hometab,container,false);
 
-        fragmentActivity = getActivity();
+        //fragmentActivity = getActivity();
         context = getContext();
 
         // Choice recyclerview
         Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
         RetrofitService retrofitService = retrofit.create(RetrofitService.class);
-        Call<ArrayList<Choice>> call = retrofitService.getChoiceArray();
-        call.enqueue(new Callback<ArrayList<Choice>>() {
+        Call<ArrayList<HomeChoice>> call = retrofitService.getChoiceArray();
+        call.enqueue(new Callback<ArrayList<HomeChoice>>() {
             @Override
-            public void onResponse(Call<ArrayList<Choice>> call, Response<ArrayList<Choice>> response) {
+            public void onResponse(Call<ArrayList<HomeChoice>> call, Response<ArrayList<HomeChoice>> response) {
                 if (response != null) {
-                    ArrayList<Choice> items = response.body();
+                    ArrayList<HomeChoice> items = response.body();
                     datas.addAll(items);
 
                     Log.e("length",datas.get(0).img+", "+datas.get(1).img+", "+datas.get(2).img);
 
-                    recyclerView = fragmentActivity.findViewById(R.id.recycle01);
-                    recyclerAdapter = new RecyclerAdapter(context,datas);
+                    recyclerView = view.findViewById(R.id.recycle01);
+                    recyclerAdapter = new HomeChoiceAdapter(context,datas);
                     recyclerView.setAdapter(recyclerAdapter);
 
                     SnapHelper snapHelper = new PagerSnapHelper();
@@ -86,24 +94,25 @@ public class HomeTabFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ArrayList<Choice>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<HomeChoice>> call, Throwable t) {
                 Toast.makeText(context, "트래픽 사용량 초과", Toast.LENGTH_SHORT).show();
             }
-        });
+        }); //choice part...
 
-        Call<ArrayList<Summer>> call2 = retrofitService.getSummerArray();
-        call2.enqueue(new Callback<ArrayList<Summer>>() {
+        //summer part
+        Call<ArrayList<HomeSummer>> call2 = retrofitService.getSummerArray();
+        call2.enqueue(new Callback<ArrayList<HomeSummer>>() {
             @Override
-            public void onResponse(Call<ArrayList<Summer>> call, Response<ArrayList<Summer>> response) {
+            public void onResponse(Call<ArrayList<HomeSummer>> call, Response<ArrayList<HomeSummer>> response) {
                 if (response != null) {
-                    ArrayList<Summer> item = response.body();
+                    ArrayList<HomeSummer> item = response.body();
                     datasSummer.addAll(item);
 
                     tvSub = getActivity().findViewById(R.id.tv_sub);
                     tvSub.setText(datasSummer.size()+"개의 레시피");
 
                     for (int i=0 ; i<3 ; i++){
-                        iv = fragmentActivity.findViewById(R.id.iv_01+i);
+                        iv = view.findViewById(R.id.iv_01+i);
                         //Glide.with(context).load(imgUrl+"/recipeSummer/"+datasSummer.get(i).img).into(iv);
                         //Glide.with(context).load(R.drawable.moana).into(iv);
                         Picasso.get().load(imgUrl+"/recipeSummer/"+datasSummer.get(i).img).into(iv);
@@ -111,7 +120,7 @@ public class HomeTabFragment extends Fragment {
 
                         Log.e("url",imgUrl+"/recipeSummer/"+datasSummer.get(i).img);
 
-                        tv = fragmentActivity.findViewById(R.id.tv_01+i);
+                        tv = view.findViewById(R.id.tv_01+i);
                         tv.setText(datasSummer.get(i).title);
                     }
 
@@ -119,10 +128,36 @@ public class HomeTabFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ArrayList<Summer>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<HomeSummer>> call, Throwable t) {
 
             }
-        });
+        }); //summer part....
+
+        //normal part
+        recyclergrid = view.findViewById(R.id.grid);
+        if (recyclergrid != null){
+            datasNormal.add(new HomeNormal(R.string.normal_01_title,R.string.normal_01_msg,R.drawable.normal01));
+            datasNormal.add(new HomeNormal(R.string.normal_02_title,R.string.normal_02_msg,R.drawable.normal02));
+            datasNormal.add(new HomeNormal(R.string.normal_03_title,R.string.normal_03_msg,R.drawable.normal03));
+            datasNormal.add(new HomeNormal(R.string.normal_04_title,R.string.normal_04_msg,R.drawable.normal04));
+            datasNormal.add(new HomeNormal(R.string.normal_05_title,R.string.normal_05_msg,R.drawable.normal05));
+            datasNormal.add(new HomeNormal(R.string.normal_06_title,R.string.normal_06_msg,R.drawable.normal06));
+            datasNormal.add(new HomeNormal(R.string.normal_07_title,R.string.normal_07_msg,R.drawable.normal07));
+            datasNormal.add(new HomeNormal(R.string.normal_08_title,R.string.normal_08_msg,R.drawable.normal08));
+
+            normalAdapter = new HomeNormalAdapter(context,datasNormal);
+
+            RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context,2);
+            recyclergrid.setLayoutManager(layoutManager);
+
+            recyclergrid.setAdapter(normalAdapter);
+        }else Toast.makeText(context, "recyclergrid null point!!", Toast.LENGTH_SHORT).show();
+
+
+
+
+
+
 
         return view;
     }
@@ -132,5 +167,8 @@ public class HomeTabFragment extends Fragment {
         super.onDestroyView();
         datas.removeAll(datas);
         recyclerAdapter.notifyDataSetChanged();
+
+        datasNormal.removeAll(datasNormal);
+        normalAdapter.notifyDataSetChanged();
     }
 }

@@ -7,14 +7,6 @@ import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
 import com.sonlcr1.projectrecipe.adapter.PagerAdapter;
-import com.sonlcr1.projectrecipe.member.Choice;
-
-import java.util.ArrayList;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +25,12 @@ public class MainActivity extends AppCompatActivity {
 
         pagerAdapter = new PagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
+
+        //페이지를 넘겨도 양옆 2칸까지는 파괴하지 않는다, 메모리에 유지 하고 있을수 있다.
+        viewPager.setOffscreenPageLimit(3);
+        viewPager.setCurrentItem(0);
+
+
         tabLayout.setupWithViewPager(viewPager);
 
         

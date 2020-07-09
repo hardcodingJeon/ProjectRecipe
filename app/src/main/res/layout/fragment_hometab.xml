@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:focusable="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -219,6 +220,17 @@
             android:layout_height="wrap_content"
             android:id="@+id/incl03"
             android:layout_below="@id/Relativedesert"/>
+
+        <!-- normal -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/grid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/incl03"
+            />
+        <!-- 레이아웃 매니저 설정 할것 -->
+
+
 
 
 

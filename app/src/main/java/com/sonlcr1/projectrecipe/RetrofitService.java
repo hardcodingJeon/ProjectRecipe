@@ -1,7 +1,7 @@
 package com.sonlcr1.projectrecipe;
 
-import com.sonlcr1.projectrecipe.member.Choice;
-import com.sonlcr1.projectrecipe.member.Summer;
+import com.sonlcr1.projectrecipe.member.HomeChoice;
+import com.sonlcr1.projectrecipe.member.HomeSummer;
 
 import java.util.ArrayList;
 
@@ -12,8 +12,8 @@ public interface RetrofitService {
 
 
     @GET("/Recipe/recipeChoice/getChoice.php")
-    Call<ArrayList<Choice>> getChoiceArray();
+    Call<ArrayList<HomeChoice>> getChoiceArray();
 
     @GET("/Recipe/recipeSummer/getSummer.php")
-    Call<ArrayList<Summer>> getSummerArray();
+    Call<ArrayList<HomeSummer>> getSummerArray();
 }

@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">ProjectRecipe</string>
+
+    <!-- home normal recycler data -->
+    <string name="normal_01_msg">곰팡이 완전 정복!</string>
+    <string name="normal_01_title">수제 곰팡이 제거제와 제습기</string>
+    <string name="normal_02_msg">땅 속의 사과인 제철 감자 ~</string>
+    <string name="normal_02_title">포슬포슬함이 일품, 햇수미감자!</string>
+    <string name="normal_03_msg">바다의 보물</string>
+    <string name="normal_03_title">전복 손질법</string>
+    <string name="normal_04_msg">딱딱하게 굳은 모닝빵도 OK!</string>
+    <string name="normal_04_title">모닝빵 멘보샤</string>
+    <string name="normal_05_msg">집에 있는 재료로 간단하게 ~</string>
+    <string name="normal_05_title">고추참치볶음밥</string>
+    <string name="normal_06_msg">바삭하게 채우는</string>
+    <string name="normal_06_title">타이 크런치 샐러드</string>
+    <string name="normal_07_msg">숙취 없는</string>
+    <string name="normal_07_title">막걸리 모히토</string>
+    <string name="normal_08_msg">냉장고에 남은 무생채를 활용한</string>
+    <string name="normal_08_title">무생채전</string>
+
 </resources>
