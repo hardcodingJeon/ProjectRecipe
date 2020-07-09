@@ -20,14 +20,21 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="horizontal"
             android:clickable="true"
+            android:background="@drawable/ic_launcher_background"
             />
+
+        <include layout="@layout/borderline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/incl01"
+            android:layout_below="@id/recycle01"/>
 
         <!-- 여름술안주 -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint01"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:layout_below="@id/recycle01"
+            android:layout_below="@id/incl01"
             android:layout_marginTop="10dp">
 
             <TextView
@@ -63,6 +70,7 @@
                 app:layout_constraintRight_toLeftOf="@id/iv_02"
                 app:layout_constraintHorizontal_weight="1"
                 android:src="@drawable/ic_launcher_background"
+                android:scaleType="centerCrop"
                 tools:ignore="MissingConstraints"
                 />
 
@@ -77,6 +85,7 @@
                 app:layout_constraintRight_toLeftOf="@id/iv_03"
                 app:layout_constraintHorizontal_weight="1"
                 android:src="@drawable/ic_launcher_background"
+                android:scaleType="centerCrop"
 
                 tools:ignore="MissingConstraints"
                 />
@@ -91,6 +100,8 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintHorizontal_weight="1"
                 android:src="@drawable/ic_launcher_background"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
 
                 tools:ignore="MissingConstraints"
                 />
@@ -148,6 +159,74 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include layout="@layout/borderline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/incl02"
+            android:layout_below="@id/constraint01"/>
+
+        <!-- 디저트 -->
+        <RelativeLayout
+            android:id="@+id/Relativedesert"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_below="@id/incl02">
+
+            <ImageView
+                android:id="@+id/iv_desert"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/desert01"
+                android:scaleType="centerCrop"
+                />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#88000000"
+                />
+            <TextView
+                android:id="@+id/tv_04"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="간식 배는 따로 있으니까!\n디저트"
+                android:textStyle="bold"
+                android:textColor="#FFFFFFFF"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:layout_centerInParent="true"
+                />
+
+            <TextView
+                android:id="@+id/tv_05"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_04"
+                android:text="자세히 보기"
+                android:background="@drawable/bg_white"
+                android:textSize="14sp"
+                android:padding="7dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                />
+
+
+        </RelativeLayout>
+        <!-- 디저트 -->
+
+        <include layout="@layout/borderline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/incl03"
+            android:layout_below="@id/Relativedesert"/>
+
+
+
+
+
+
+
+
 
 
 

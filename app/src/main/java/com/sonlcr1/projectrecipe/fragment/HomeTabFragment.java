@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +25,7 @@ import com.sonlcr1.projectrecipe.RetrofitService;
 import com.sonlcr1.projectrecipe.adapter.RecyclerAdapter;
 import com.sonlcr1.projectrecipe.member.Choice;
 import com.sonlcr1.projectrecipe.member.Summer;
+import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -85,7 +87,7 @@ public class HomeTabFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ArrayList<Choice>> call, Throwable t) {
-
+                Toast.makeText(context, "트래픽 사용량 초과", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -102,8 +104,9 @@ public class HomeTabFragment extends Fragment {
 
                     for (int i=0 ; i<3 ; i++){
                         iv = fragmentActivity.findViewById(R.id.iv_01+i);
-                        Glide.with(context).load(imgUrl+"/recipeSummer/"+datasSummer.get(i).img).into(iv);
+                        //Glide.with(context).load(imgUrl+"/recipeSummer/"+datasSummer.get(i).img).into(iv);
                         //Glide.with(context).load(R.drawable.moana).into(iv);
+                        Picasso.get().load(imgUrl+"/recipeSummer/"+datasSummer.get(i).img).into(iv);
 
 
                         Log.e("url",imgUrl+"/recipeSummer/"+datasSummer.get(i).img);
