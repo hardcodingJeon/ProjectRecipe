@@ -19,4 +19,16 @@
     <string name="normal_08_msg">냉장고에 남은 무생채를 활용한</string>
     <string name="normal_08_title">무생채전</string>
 
+    <!-- thema icon title -->
+    <string name="icontitle_01">주스,음료</string>
+    <string name="icontitle_02">간식,분식</string>
+    <string name="icontitle_03">술,칵테일</string>
+    <string name="icontitle_04">밥요리</string>
+    <string name="icontitle_05">찌개</string>
+    <string name="icontitle_06">국 탕</string>
+    <string name="icontitle_07">밑반찬</string>
+    <string name="icontitle_08">김치 장아찌</string>
+    <string name="icontitle_09">볶음 요리</string>
+    <string name="icontitle_10">면요리</string>
+
 </resources>
