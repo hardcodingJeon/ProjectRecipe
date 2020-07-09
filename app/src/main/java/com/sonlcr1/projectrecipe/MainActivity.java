@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         pagerAdapter = new PagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
 
-        //페이지를 넘겨도 양옆 2칸까지는 파괴하지 않는다, 메모리에 유지 하고 있을수 있다.
+        //페이지를 넘겨도 양옆 3칸까지는 파괴하지 않는다, 메모리에 유지 하고 있을수 있다.
         viewPager.setOffscreenPageLimit(3);
         viewPager.setCurrentItem(0);
 
