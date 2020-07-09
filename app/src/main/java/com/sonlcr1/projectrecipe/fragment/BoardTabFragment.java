@@ -17,6 +17,7 @@ public class BoardTabFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_boardtab,container,false);
 
+        //todo : board recycler 시안 만들차례
 
         return view;
     }
