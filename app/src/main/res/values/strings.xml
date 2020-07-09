@@ -31,4 +31,18 @@
     <string name="icontitle_09">볶음 요리</string>
     <string name="icontitle_10">면요리</string>
 
+    <!-- tv title -->
+    <string name="tvmsg_01">끈적~한 여름을 날려버릴 시원함!</string>
+    <string name="tvtitle_01">오이냉국</string>
+    <string name="tvmsg_02">매콤달콤 입맛 살리는</string>
+    <string name="tvtitle_02">제육볶음</string>
+    <string name="tvmsg_03">곰팡이 완전 정복!</string>
+    <string name="tvtitle_03">수제 곰팡이 제거제와 제습기</string>
+    <string name="tvmsg_04">바다의 보물</string>
+    <string name="tvtitle_04">전복 손질법</string>
+    <string name="tvmsg_05">딱딱하게 굳은 모닝빵도 OK!</string>
+    <string name="tvtitle_05">모닝빵 멘보샤</string>
+    <string name="tvmsg_06">간편 재료로 맛있게!</string>
+    <string name="tvtitle_06">고추참치볶음밥</string>
+
 </resources>

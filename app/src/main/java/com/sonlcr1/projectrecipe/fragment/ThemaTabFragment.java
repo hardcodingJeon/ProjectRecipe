@@ -57,8 +57,8 @@ public class ThemaTabFragment extends Fragment {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
         datas.removeAll(datas);
         iconAdapter.notifyDataSetChanged();
     }
