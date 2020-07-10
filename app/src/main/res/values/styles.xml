@@ -14,4 +14,11 @@
         <item name="colorPrimaryDark">@color/recipeSymbolDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+<!--    <style name="NoactionBarBoard" parent="Theme.AppCompat.Light.NoActionBar">-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/recipeSymbol</item>-->
+<!--        <item name="colorPrimaryDark">@color/recipeSymbolDark</item>-->
+<!--        <item name="colorAccent">@color/colorAccent</item>-->
+<!--    </style>-->
 </resources>

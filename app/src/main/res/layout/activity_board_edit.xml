@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BoardEdit">
+
+    <EditText
+        android:id="@+id/et"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_edit"
+        android:layout_margin="5dp"
+        android:hint="내용을 입력하세요"
+        android:gravity="top"
+        android:padding="10dp"
+        android:layout_above="@id/iv"
+
+        />
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_above="@id/line"
+        android:src="@drawable/ic_launcher_background"
+        android:background="@drawable/bg_edit"
+        android:layout_margin="5dp"
+        />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#FF555555"
+        android:layout_above="@id/bnv"
+        />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bnv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/board_edit_bnv"
+        app:labelVisibilityMode="unlabeled"
+        app:itemIconTint="#686868"
+
+        />
+
+
+</RelativeLayout>
