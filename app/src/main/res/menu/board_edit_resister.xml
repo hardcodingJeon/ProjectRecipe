@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/resister" android:title="등록" app:showAsAction="ifRoom"/>
+    <!-- 메뉴는 아이템들은 기본설정으로 밖에 보여지지 않고 때댕 안에 들어가있다. -->
+
+</menu>

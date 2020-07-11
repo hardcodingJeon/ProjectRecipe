@@ -35,6 +35,7 @@ public class ThemaTabFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycle);
         recyclerView.setNestedScrollingEnabled(false);
 
+
         datas.add(new ThemaIcon(R.string.icontitle_01,R.drawable.a01juice));
         datas.add(new ThemaIcon(R.string.icontitle_02,R.drawable.a02desert));
         datas.add(new ThemaIcon(R.string.icontitle_03,R.drawable.a03beer));
@@ -53,7 +54,6 @@ public class ThemaTabFragment extends Fragment {
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(iconAdapter);
-        recyclerView.setNestedScrollingEnabled(false);
 
 
         return view;

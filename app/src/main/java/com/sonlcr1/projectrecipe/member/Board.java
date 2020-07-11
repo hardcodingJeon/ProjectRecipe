@@ -7,13 +7,13 @@ public class Board {
     public String msg;
     public String imgmain;
     public int favorstate;
-    public String favornum;
+    public int favornum;
     public String chatnum;
 
     public Board() {
     }
 
-    public Board(String userimg, String userid, String date, String msg, String imgmain, int favorstate, String favornum, String chatnum) {
+    public Board(String userimg, String userid, String date, String msg, String imgmain, int favorstate, int favornum, String chatnum) {
         this.userimg = userimg;
         this.userid = userid;
         this.date = date;

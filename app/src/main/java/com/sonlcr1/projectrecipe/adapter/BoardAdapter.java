@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -49,7 +50,7 @@ public class BoardAdapter extends RecyclerView.Adapter {
         vh.tvuser.setText(item.userid);
         vh.tvday.setText(item.date);
         vh.tvmsg.setText(item.msg);
-        vh.tvfavor.setText(item.favornum);
+        vh.tvfavor.setText(""+item.favornum);
         vh.tvchat.setText(item.chatnum);
         vh.tbfavor.setChecked(item.favorstate==1?true:false);
 
@@ -77,6 +78,15 @@ public class BoardAdapter extends RecyclerView.Adapter {
             tvfavor = itemView.findViewById(R.id.tv_favor);
             tvchat = itemView.findViewById(R.id.tv_chat);
             tbfavor = itemView.findViewById(R.id.tb_favor);
+
+            tbfavor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked == true) {
+                        tvfavor.setText(""+(datas.get(getLayoutPosition()).favornum+1));
+                    }else tvfavor.setText(""+(datas.get(getLayoutPosition()).favornum));
+                }
+            });
         }
     }
 }

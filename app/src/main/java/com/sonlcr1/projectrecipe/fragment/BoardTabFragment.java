@@ -41,14 +41,14 @@ public class BoardTabFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycle);
         context = getContext();
 
-        datas.add(new Board(null,"1","1","msg1",null,0,"1","1"));
-        datas.add(new Board(null,"2","2","msg2",null,0,"2","2"));
-        datas.add(new Board(null,"1","1","msg1",null,0,"1","1"));
-        datas.add(new Board(null,"2","2","msg2",null,0,"2","2"));
-        datas.add(new Board(null,"1","1","msg1",null,0,"1","1"));
-        datas.add(new Board(null,"2","2","msg2",null,0,"2","2"));
-        datas.add(new Board(null,"1","1","msg1",null,0,"1","1"));
-        datas.add(new Board(null,"2","2","msg2",null,0,"2","2"));
+        datas.add(new Board(null,"1","1","msg1",null,0,1,"1"));
+        datas.add(new Board(null,"2","2","msg2",null,0,2,"2"));
+        datas.add(new Board(null,"1","1","msg1",null,0,1,"1"));
+        datas.add(new Board(null,"2","2","msg2",null,0,2,"2"));
+        datas.add(new Board(null,"1","1","msg1",null,0,1,"1"));
+        datas.add(new Board(null,"2","2","msg2",null,0,2,"2"));
+        datas.add(new Board(null,"1","1","msg1",null,0,1,"1"));
+        datas.add(new Board(null,"2","2","msg2",null,0,2,"2"));
 
         boardAdapter = new BoardAdapter(context,datas);
 
