@@ -25,7 +25,7 @@ public class BoardEdit extends AppCompatActivity {
     EditText et;
     ImageView iv;
     BottomNavigationView bnv;
-
+    //22
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
