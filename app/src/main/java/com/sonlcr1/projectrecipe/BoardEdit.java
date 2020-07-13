@@ -24,6 +24,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -32,6 +33,16 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class BoardEdit extends AppCompatActivity {
 
@@ -72,7 +83,40 @@ public class BoardEdit extends AppCompatActivity {
             case android.R.id.home: //뒤로 가기 눌렀을때의 아이디가 이미 키로 명시되있음.
                 finish();
                 break;
-            case R.id.resister:
+            case R.id.resister: //서버에 올리는 작업
+                String msg = et.getText().toString();
+
+                Map<String ,String> datapart = new HashMap<>();
+                datapart.put("msg",msg);
+
+                Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
+                RetrofitService retrofitService = retrofit.create(RetrofitService.class);
+
+                //업로드할 파일
+                MultipartBody.Part filepart = null;
+                if (imgFile != null) {
+                    File file = new File(imgFile);
+                    RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"),file);
+
+                    filepart = MultipartBody.Part.createFormData("imgmain",file.getName(),requestBody);
+                }
+
+                Call<String> call = retrofitService.insertData(datapart,filepart);
+                call.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        if (response.isSuccessful()) {
+                            Toast.makeText(BoardEdit.this, "업로드가 성공하였습니다.", Toast.LENGTH_SHORT).show();
+                            //finish();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                        Toast.makeText(BoardEdit.this, "업로드가 실패 하였습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
 
                 break;
         }

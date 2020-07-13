@@ -1,5 +1,6 @@
 package com.sonlcr1.projectrecipe;
 
+import com.sonlcr1.projectrecipe.member.Board;
 import com.sonlcr1.projectrecipe.member.HomeChoice;
 import com.sonlcr1.projectrecipe.member.HomeSummer;
 
