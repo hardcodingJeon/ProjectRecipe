@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.sonlcr1.projectrecipe.R;
 import com.sonlcr1.projectrecipe.RetrofitHelper;
@@ -59,16 +60,79 @@ public class HomeTabFragment extends Fragment {
     HomeChoiceAdapter recyclerAdapter;
     HomeNormalAdapter normalAdapter;
 
+    SwipeRefreshLayout refreshLayout;
+    View view;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_hometab,container,false);
+        view = inflater.inflate(R.layout.fragment_hometab,container,false);
+
+        refreshLayout = view.findViewById(R.id.refresh);
 
         //fragmentActivity = getActivity();
         context = getContext();
 
+
+
+        //normal part
+        recyclergrid = view.findViewById(R.id.grid);
+
+
+            getdata();
+            normalAdapter = new HomeNormalAdapter(context,datasNormal);
+
+
+            RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context,2);
+            recyclergrid.setLayoutManager(layoutManager);
+
+            recyclergrid.setAdapter(normalAdapter);
+
+
+
+
+
+
+
+
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        //리프레쉬
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                datas.removeAll(datas);
+                datasNormal.removeAll(datasNormal);
+
+                getdata();
+                recyclerAdapter.notifyDataSetChanged();
+                normalAdapter.notifyDataSetChanged();
+
+                refreshLayout.setRefreshing(false);
+            }
+        });
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        datas.removeAll(datas);
+        recyclerAdapter.notifyDataSetChanged();
+
+        datasNormal.removeAll(datasNormal);
+        normalAdapter.notifyDataSetChanged();
+
+
+    }
+
+    void getdata(){
         // Choice recyclerview
         Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
         RetrofitService retrofitService = retrofit.create(RetrofitService.class);
@@ -78,13 +142,18 @@ public class HomeTabFragment extends Fragment {
             public void onResponse(Call<ArrayList<HomeChoice>> call, Response<ArrayList<HomeChoice>> response) {
                 if (response != null) {
                     ArrayList<HomeChoice> items = response.body();
+
                     datas.addAll(items);
 
                     Log.e("length",datas.get(0).img+", "+datas.get(1).img+", "+datas.get(2).img);
 
                     recyclerView = view.findViewById(R.id.recycle01);
                     recyclerAdapter = new HomeChoiceAdapter(context,datas);
+                    recyclerAdapter.notifyDataSetChanged();
                     recyclerView.setAdapter(recyclerAdapter);
+
+                    //java.lang.IllegalStateException: An instance of OnFlingListener already set. 에러 수정하는 코드, setOnFlingListener(null);
+                    recyclerView.setOnFlingListener(null);
 
                     SnapHelper snapHelper = new PagerSnapHelper();
                     snapHelper.attachToRecyclerView(recyclerView);
@@ -133,42 +202,14 @@ public class HomeTabFragment extends Fragment {
             }
         }); //summer part....
 
-        //normal part
-        recyclergrid = view.findViewById(R.id.grid);
-        if (recyclergrid != null){
-            datasNormal.add(new HomeNormal(R.string.normal_01_title,R.string.normal_01_msg,R.drawable.normal01));
-            datasNormal.add(new HomeNormal(R.string.normal_02_title,R.string.normal_02_msg,R.drawable.normal02));
-            datasNormal.add(new HomeNormal(R.string.normal_03_title,R.string.normal_03_msg,R.drawable.normal03));
-            datasNormal.add(new HomeNormal(R.string.normal_04_title,R.string.normal_04_msg,R.drawable.normal04));
-            datasNormal.add(new HomeNormal(R.string.normal_05_title,R.string.normal_05_msg,R.drawable.normal05));
-            datasNormal.add(new HomeNormal(R.string.normal_06_title,R.string.normal_06_msg,R.drawable.normal06));
-            datasNormal.add(new HomeNormal(R.string.normal_07_title,R.string.normal_07_msg,R.drawable.normal07));
-            datasNormal.add(new HomeNormal(R.string.normal_08_title,R.string.normal_08_msg,R.drawable.normal08));
+        datasNormal.add(new HomeNormal(R.string.normal_01_title,R.string.normal_01_msg,R.drawable.normal01));
+        datasNormal.add(new HomeNormal(R.string.normal_02_title,R.string.normal_02_msg,R.drawable.normal02));
+        datasNormal.add(new HomeNormal(R.string.normal_03_title,R.string.normal_03_msg,R.drawable.normal03));
+        datasNormal.add(new HomeNormal(R.string.normal_04_title,R.string.normal_04_msg,R.drawable.normal04));
+        datasNormal.add(new HomeNormal(R.string.normal_05_title,R.string.normal_05_msg,R.drawable.normal05));
+        datasNormal.add(new HomeNormal(R.string.normal_06_title,R.string.normal_06_msg,R.drawable.normal06));
+        datasNormal.add(new HomeNormal(R.string.normal_07_title,R.string.normal_07_msg,R.drawable.normal07));
+        datasNormal.add(new HomeNormal(R.string.normal_08_title,R.string.normal_08_msg,R.drawable.normal08));
 
-            normalAdapter = new HomeNormalAdapter(context,datasNormal);
-
-            RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context,2);
-            recyclergrid.setLayoutManager(layoutManager);
-
-            recyclergrid.setAdapter(normalAdapter);
-        }else Toast.makeText(context, "recyclergrid null point!!", Toast.LENGTH_SHORT).show();
-
-
-
-
-
-
-
-        return view;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        datas.removeAll(datas);
-        recyclerAdapter.notifyDataSetChanged();
-
-        datasNormal.removeAll(datasNormal);
-        normalAdapter.notifyDataSetChanged();
     }
 }
