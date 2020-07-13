@@ -1,6 +1,7 @@
 package com.sonlcr1.projectrecipe.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.sonlcr1.projectrecipe.R;
 import com.sonlcr1.projectrecipe.member.HomeChoice;
+import com.sonlcr1.projectrecipe.recipeActivity.HomeChoiceRecipe;
 
 import java.util.ArrayList;
 
@@ -49,6 +51,8 @@ public class HomeChoiceAdapter extends RecyclerView.Adapter {
         vh.tvTitle.setText(items.title);
         Glide.with(context).load(imgUrl).into(vh.imgMain);
 
+
+
     }
 
     @Override
@@ -67,6 +71,24 @@ public class HomeChoiceAdapter extends RecyclerView.Adapter {
             tvSubject = itemView.findViewById(R.id.tv_subject);
             tvTitle = itemView.findViewById(R.id.tv_title);
             imgMain = itemView.findViewById(R.id.iv_main);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    switch (getLayoutPosition()){
+                        case 0:
+                            Intent intent = new Intent(context, HomeChoiceRecipe.class);
+
+                            context.startActivity(intent);
+                            break;
+                        case 1:
+                            break;
+                        case 2:
+                            break;
+                    }
+
+                }
+            });
         }
     }
 }

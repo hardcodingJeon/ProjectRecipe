@@ -22,6 +22,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class BoardAdapter extends RecyclerView.Adapter {
 
+    String imgUrl = "http://jeondh9971.dothome.co.kr/Recipe/recipeBoardEdit/";
+
     Context context;
     ArrayList<Board> datas;
 
@@ -45,8 +47,11 @@ public class BoardAdapter extends RecyclerView.Adapter {
         VH vh = (VH)holder;
         Board item = datas.get(position);
 
-        Glide.with(context).load(item.userimg).into(vh.circleimg);
-        Glide.with(context).load(item.imgmain).into(vh.ivmain);
+        String userimg = imgUrl + item.userimg;
+        String imgmain = imgUrl + item.imgmain;
+
+        Glide.with(context).load(userimg).into(vh.circleimg);
+        Glide.with(context).load(imgmain).into(vh.ivmain);
         vh.tvuser.setText(item.userid);
         vh.tvday.setText(item.date);
         vh.tvmsg.setText(item.msg);

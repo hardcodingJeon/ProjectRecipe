@@ -27,5 +27,8 @@ public interface RetrofitService {
     @Multipart
     @POST("/Recipe/recipeBoardEdit/recipeBoardInsert.php")
     Call<String> insertData(@PartMap Map<String,String> datapart, @Part MultipartBody.Part filepart);
+
+    @GET("/Recipe/recipeBoardEdit/recipeBoardLoad.php")
+    Call<ArrayList<Board>> loadData();
 }
 //todo : 등록을 누르면 서버에 올린후 바로 내려 받는 php할 차례
