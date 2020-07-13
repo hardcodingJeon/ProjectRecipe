@@ -106,14 +106,17 @@ public class BoardEdit extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
                         if (response.isSuccessful()) {
-                            Toast.makeText(BoardEdit.this, "업로드가 성공하였습니다.", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(BoardEdit.this, "업로드가 성공하였습니다.", Toast.LENGTH_SHORT).show();
                             //finish();
+
+                            Toast.makeText(BoardEdit.this,response.body() , Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<String> call, Throwable t) {
-                        Toast.makeText(BoardEdit.this, "업로드가 실패 하였습니다.", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(BoardEdit.this, "업로드가 실패 하였습니다.", Toast.LENGTH_SHORT).show();
+
                     }
                 });
 
