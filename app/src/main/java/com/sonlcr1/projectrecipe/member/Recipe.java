@@ -1,27 +1,27 @@
 package com.sonlcr1.projectrecipe.member;
 
 public class Recipe {
-    public String firstimg;
-    public String firstsub;
-    public String firsttitle;
-    public String secondessential;
-    public String secondessentialmsg;
-    public String secondchoice;
-    public String secondchoicemsg;
-    public String secondsource;
-    public String secondsourcemsg;
-    public String thirdimg;
-    public String thirdmsg;
-    public String fourthimg;
-    public String fourthmsg;
-    public String fifthimg;
-    public String fifthmsg;
-    public String sixthimg;
-    public String sixthmsg;
-    public String seventhimg;
-    public String seventhmsg;
-    public String eighthimg;
-    public String eighthmsg;
+    public static String firstimg;
+    public static String firstsub;
+    public static String firsttitle;
+    public static String secondessential;
+    public static String secondessentialmsg;
+    public static String secondchoice;
+    public static String secondchoicemsg;
+    public static String secondsource;
+    public static String secondsourcemsg;
+    public static String thirdimg;
+    public static String thirdmsg;
+    public static String fourthimg;
+    public static String fourthmsg;
+    public static String fifthimg;
+    public static String fifthmsg;
+    public static String sixthimg;
+    public static String sixthmsg;
+    public static String seventhimg;
+    public static String seventhmsg;
+    public static String eighthimg;
+    public static String eighthmsg;
 
     public Recipe(String firstsub,
                   String firsttitle,
