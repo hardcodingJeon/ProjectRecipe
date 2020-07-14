@@ -22,6 +22,7 @@ import retrofit2.Retrofit;
 
 public class HomeChoiceRecipe extends AppCompatActivity {
 
+    //이거 집에서 받아지나
     ImageView ivback;
     ViewPager viewPager;
     Recipe data;
