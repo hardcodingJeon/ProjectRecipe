@@ -110,6 +110,7 @@ public class HomeTabFragment extends Fragment {
             public void onRefresh() {
                 datas.removeAll(datas);
                 datasNormal.removeAll(datasNormal);
+                datasSummer.removeAll(datasSummer);
 
                 getdata();
                 recyclerAdapter.notifyDataSetChanged();
@@ -177,7 +178,7 @@ public class HomeTabFragment extends Fragment {
                     ArrayList<HomeSummer> item = response.body();
                     datasSummer.addAll(item);
 
-                    tvSub = getActivity().findViewById(R.id.tv_sub);
+                    tvSub = view.findViewById(R.id.tv_sub);
                     tvSub.setText(datasSummer.size()+"개의 레시피");
 
                     for (int i=0 ; i<3 ; i++){
