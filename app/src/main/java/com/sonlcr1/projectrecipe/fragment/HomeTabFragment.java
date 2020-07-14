@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.bumptech.glide.Glide;
 import com.sonlcr1.projectrecipe.R;
 import com.sonlcr1.projectrecipe.RetrofitHelper;
 import com.sonlcr1.projectrecipe.RetrofitService;
@@ -184,8 +185,8 @@ public class HomeTabFragment extends Fragment {
                     for (int i=0 ; i<3 ; i++){
                         iv = view.findViewById(R.id.iv_01+i);
                         //Glide.with(context).load(imgUrl+"/recipeSummer/"+datasSummer.get(i).img).into(iv);
-                        //Glide.with(context).load(R.drawable.moana).into(iv);
-                        Picasso.get().load(imgUrl+"/recipeSummer/"+datasSummer.get(i).img).into(iv);
+                        Glide.with(view).load(imgUrl+"/recipeSummer/"+datasSummer.get(i).img).into(iv);
+                        //Picasso.get().load(imgUrl+"/recipeSummer/"+datasSummer.get(i).img).into(iv);
 
 
                         Log.e("url",imgUrl+"/recipeSummer/"+datasSummer.get(i).img);

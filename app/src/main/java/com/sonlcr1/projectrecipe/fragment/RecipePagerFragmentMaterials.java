@@ -11,13 +11,13 @@ import androidx.fragment.app.Fragment;
 
 import com.sonlcr1.projectrecipe.R;
 
-public class RecipePagerFragmentContent extends Fragment {
+public class RecipePagerFragmentMaterials extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_recipe_content,container,false);
+        View view = inflater.inflate(R.layout.fragment_recipe_materials,container,false);
 
 
         return view;

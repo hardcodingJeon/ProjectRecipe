@@ -78,7 +78,7 @@ public class HomeChoiceAdapter extends RecyclerView.Adapter {
                     switch (getLayoutPosition()){
                         case 0:
                             Intent intent = new Intent(context, HomeChoiceRecipe.class);
-
+                            //여기서 put 데이터로 레시피 제목 넣을것
                             context.startActivity(intent);
                             break;
                         case 1:
