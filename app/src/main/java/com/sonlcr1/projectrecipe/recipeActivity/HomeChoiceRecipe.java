@@ -11,7 +11,8 @@ import android.widget.ImageView;
 import com.sonlcr1.projectrecipe.R;
 import com.sonlcr1.projectrecipe.RetrofitHelper;
 import com.sonlcr1.projectrecipe.RetrofitService;
-import com.sonlcr1.projectrecipe.adapter.HomeChoiceRecipeAdapter;
+import com.sonlcr1.projectrecipe.adapter.HomeChoiceRecipeAdapter2;
+import com.sonlcr1.projectrecipe.adapter.HomeChoiceRecipeAdapter3;
 import com.sonlcr1.projectrecipe.member.Recipe;
 
 import retrofit2.Call;
@@ -42,8 +43,15 @@ public class HomeChoiceRecipe extends AppCompatActivity {
             }
         });
 
-        HomeChoiceRecipeAdapter recipeAdapter = new HomeChoiceRecipeAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(recipeAdapter);
+        String s = getIntent().getStringExtra("thirdmsg");
+        if (s.equals("")){
+            HomeChoiceRecipeAdapter2 recipeAdapter2 = new HomeChoiceRecipeAdapter2(getSupportFragmentManager());
+            viewPager.setAdapter(recipeAdapter2);
+        }else{
+            HomeChoiceRecipeAdapter3 recipeAdapter3 = new HomeChoiceRecipeAdapter3(getSupportFragmentManager());
+            viewPager.setAdapter(recipeAdapter3);
+        }
+
 
         getdata();
 

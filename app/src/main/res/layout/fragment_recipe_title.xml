@@ -20,34 +20,34 @@
         />
 
 
-
     <TextView
         android:id="@+id/tv_sub"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="테스트용 타이틀"
-        android:textSize="18sp"
-        android:textColor="#FF000000"
         android:layout_above="@id/tv_title"
-
         android:layout_marginLeft="20dp"
         android:layout_marginBottom="15dp"
+        android:text="테스트용 sub"
+
+        android:textColor="#FF000000"
+        android:textSize="18sp"
 
         />
+
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="9"
-        android:text="테스트용 메세지"
-        android:textStyle="bold"
-        android:inputType="textMultiLine"
-        android:textSize="24sp"
-        android:textColor="#FF000000"
         android:layout_alignParentBottom="true"
-
         android:layout_marginLeft="20dp"
         android:layout_marginBottom="15dp"
+        android:ems="9"
+        android:inputType="textMultiLine"
+        android:text="테스트용 title"
+        android:textColor="#FF000000"
+
+        android:textSize="24sp"
+        android:textStyle="bold"
 
 
         />

@@ -9,10 +9,10 @@ import com.sonlcr1.projectrecipe.fragment.RecipePagerFragmentExplain;
 import com.sonlcr1.projectrecipe.fragment.RecipePagerFragmentMaterials;
 import com.sonlcr1.projectrecipe.fragment.RecipePagerFragmentTitle;
 
-public class HomeChoiceRecipeAdapter extends FragmentPagerAdapter {
+public class HomeChoiceRecipeAdapter3 extends FragmentPagerAdapter {
     Fragment[] fragments = new Fragment[3];
 
-    public HomeChoiceRecipeAdapter(@NonNull FragmentManager fm) {
+    public HomeChoiceRecipeAdapter3(@NonNull FragmentManager fm) {
         super(fm);
         fragments[0] = new RecipePagerFragmentTitle();
         fragments[1] = new RecipePagerFragmentMaterials();
