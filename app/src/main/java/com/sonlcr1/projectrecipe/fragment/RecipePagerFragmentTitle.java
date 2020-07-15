@@ -18,7 +18,7 @@ import com.sonlcr1.projectrecipe.member.Recipe;
 
 public class RecipePagerFragmentTitle extends Fragment {
 
-    String imgUrl = "http://jeondh9971.dothome.co.kr/Recipe/recipeChoice/";
+    String imgUrl = "http://jeondh9971.dothome.co.kr/Recipe/recipeData/";
 
     ImageView iv;
     TextView tvsub,tvtitle;
@@ -35,9 +35,10 @@ public class RecipePagerFragmentTitle extends Fragment {
 
         activity = getActivity();
 
-        String sub = activity.getIntent().getExtras().getString("tvSub");
-        String title = activity.getIntent().getStringExtra("tvTitle");
-        String img = activity.getIntent().getExtras().getString("img");
+
+        String sub = activity.getIntent().getExtras().getString("firstsub");
+        String title = activity.getIntent().getStringExtra("firsttile");
+        String img = activity.getIntent().getExtras().getString("firstimg");
         tvsub.setText(sub);
         tvtitle.setText(title);
         Glide.with(view).load(imgUrl+img).into(iv);

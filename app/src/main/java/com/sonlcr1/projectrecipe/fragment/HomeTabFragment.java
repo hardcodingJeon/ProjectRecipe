@@ -30,6 +30,7 @@ import com.sonlcr1.projectrecipe.adapter.HomeNormalAdapter;
 import com.sonlcr1.projectrecipe.member.HomeChoice;
 import com.sonlcr1.projectrecipe.member.HomeNormal;
 import com.sonlcr1.projectrecipe.member.HomeSummer;
+import com.sonlcr1.projectrecipe.member.Recipe;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -53,7 +54,7 @@ public class HomeTabFragment extends Fragment {
     RecyclerView recyclerView;
     RecyclerView recyclergrid;
 
-    ArrayList<HomeChoice> datas = new ArrayList<>();
+    ArrayList<Recipe> datas = new ArrayList<>();
     ArrayList<HomeSummer> datasSummer = new ArrayList<>();
     ArrayList<HomeNormal> datasNormal = new ArrayList<>();
 
@@ -128,16 +129,16 @@ public class HomeTabFragment extends Fragment {
         // Choice recyclerview
         Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
         RetrofitService retrofitService = retrofit.create(RetrofitService.class);
-        Call<ArrayList<HomeChoice>> call = retrofitService.getChoiceArray();
-        call.enqueue(new Callback<ArrayList<HomeChoice>>() {
+        Call<ArrayList<Recipe>> call = retrofitService.getChoiceArray();
+        call.enqueue(new Callback<ArrayList<Recipe>>() {
             @Override
-            public void onResponse(Call<ArrayList<HomeChoice>> call, Response<ArrayList<HomeChoice>> response) {
+            public void onResponse(Call<ArrayList<Recipe>> call, Response<ArrayList<Recipe>> response) {
                 if (response != null) {
-                    ArrayList<HomeChoice> items = response.body();
+                    ArrayList<Recipe> items = response.body();
 
                     datas.addAll(items);
 
-                    Log.e("length",datas.get(0).img+", "+datas.get(1).img+", "+datas.get(2).img);
+                    //Log.e("length",datas.get(0).img+", "+datas.get(1).img+", "+datas.get(2).img);
 
                     recyclerView = view.findViewById(R.id.recycle01);
                     recyclerAdapter = new HomeChoiceAdapter(context,datas);
@@ -155,7 +156,7 @@ public class HomeTabFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ArrayList<HomeChoice>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<Recipe>> call, Throwable t) {
                 Toast.makeText(context, "트래픽 사용량 초과", Toast.LENGTH_SHORT).show();
             }
         }); //choice part...

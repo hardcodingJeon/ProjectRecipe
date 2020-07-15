@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.sonlcr1.projectrecipe.R;
 import com.sonlcr1.projectrecipe.member.HomeChoice;
+import com.sonlcr1.projectrecipe.member.Recipe;
 import com.sonlcr1.projectrecipe.recipeActivity.HomeChoiceRecipe;
 
 import java.util.ArrayList;
@@ -21,12 +22,12 @@ import java.util.ArrayList;
 public class HomeChoiceAdapter extends RecyclerView.Adapter {
 
     Context context;
-    ArrayList<HomeChoice> datas = new ArrayList<>();
+    ArrayList<Recipe> datas = new ArrayList<>();
 
     public HomeChoiceAdapter() {
     }
 
-    public HomeChoiceAdapter(Context context, ArrayList<HomeChoice> datas) {
+    public HomeChoiceAdapter(Context context, ArrayList<Recipe> datas) {
         this.context = context;
         this.datas = datas;
     }
@@ -43,13 +44,13 @@ public class HomeChoiceAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         VH vh = (VH)holder;
-        HomeChoice items = datas.get(position);
+        Recipe items = datas.get(position);
 
-        String imgUrl = "http://jeondh9971.dothome.co.kr/Recipe/recipeChoice/" + items.img;
+        String imgUrl = "http://jeondh9971.dothome.co.kr/Recipe/recipeData/" + items.firstimg;
 
-        vh.tvEx.setText(items.subject);
-        vh.tvSub.setText(items.tvsub);
-        vh.tvTitle.setText(items.tvtitle);
+
+        vh.tvSub.setText(items.firstsub);
+        vh.tvTitle.setText(items.firsttitle);
         Glide.with(context).load(imgUrl).into(vh.imgMain);
 
 
@@ -78,12 +79,37 @@ public class HomeChoiceAdapter extends RecyclerView.Adapter {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    HomeChoice data = datas.get(getLayoutPosition());
+                    Recipe data = datas.get(getLayoutPosition());
 
                     Intent intent = new Intent(context,HomeChoiceRecipe.class);
-                    intent.putExtra("tvSub",data.tvsub);
-                    intent.putExtra("tvTitle",data.tvtitle);
-                    intent.putExtra("img",data.img);
+                    intent.putExtra("firstsub",data.firstsub);
+                    intent.putExtra("firsttile",data.firsttitle);
+                    intent.putExtra("firstimg",data.firstimg);
+
+                    intent.putExtra("secondessential",data.secondessential);
+                    intent.putExtra("secondessentialmsg",data.secondessentialmsg);
+                    intent.putExtra("secondchoice",data.secondchoice);
+                    intent.putExtra("secondchoicemsg",data.secondchoicemsg);
+                    intent.putExtra("secondsource",data.secondsource);
+                    intent.putExtra("secondsourcemsg",data.secondsourcemsg);
+
+                    intent.putExtra("thirdimg",data.thirdimg);
+                    intent.putExtra("thirdmsg",data.thirdmsg);
+
+                    intent.putExtra("fourthimg",data.fourthimg);
+                    intent.putExtra("fourthmsg",data.fourthmsg);
+
+                    intent.putExtra("fifthimg",data.fifthimg);
+                    intent.putExtra("fifthmsg",data.fifthmsg);
+
+                    intent.putExtra("sixthimg",data.sixthimg);
+                    intent.putExtra("sixthmsg",data.sixthmsg);
+
+                    intent.putExtra("seventhimg",data.seventhimg);
+                    intent.putExtra("seventhmsg",data.seventhmsg);
+
+                    intent.putExtra("eighthimg",data.eighthimg);
+                    intent.putExtra("eighthmsg",data.eighthmsg);
 
                     context.startActivity(intent);
 
