@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.bumptech.glide.Glide;
 import com.sonlcr1.projectrecipe.R;
 import com.sonlcr1.projectrecipe.RetrofitHelper;
 import com.sonlcr1.projectrecipe.RetrofitService;
@@ -29,6 +30,7 @@ import com.sonlcr1.projectrecipe.adapter.HomeNormalAdapter;
 import com.sonlcr1.projectrecipe.member.HomeChoice;
 import com.sonlcr1.projectrecipe.member.HomeNormal;
 import com.sonlcr1.projectrecipe.member.HomeSummer;
+import com.sonlcr1.projectrecipe.member.Recipe;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -52,7 +54,7 @@ public class HomeTabFragment extends Fragment {
     RecyclerView recyclerView;
     RecyclerView recyclergrid;
 
-    ArrayList<HomeChoice> datas = new ArrayList<>();
+    ArrayList<Recipe> datas = new ArrayList<>();
     ArrayList<HomeSummer> datasSummer = new ArrayList<>();
     ArrayList<HomeNormal> datasNormal = new ArrayList<>();
 
@@ -75,26 +77,11 @@ public class HomeTabFragment extends Fragment {
         //fragmentActivity = getActivity();
         context = getContext();
 
-
-
         //normal part
         recyclergrid = view.findViewById(R.id.grid);
 
 
-            getdata();
-            normalAdapter = new HomeNormalAdapter(context,datasNormal);
-
-
-            RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context,2);
-            recyclergrid.setLayoutManager(layoutManager);
-
-            recyclergrid.setAdapter(normalAdapter);
-
-
-
-
-
-
+        getdata();
 
 
         return view;
@@ -110,10 +97,16 @@ public class HomeTabFragment extends Fragment {
             public void onRefresh() {
                 datas.removeAll(datas);
                 datasNormal.removeAll(datasNormal);
+                datasSummer.removeAll(datasSummer);
 
                 getdata();
-                recyclerAdapter.notifyDataSetChanged();
-                normalAdapter.notifyDataSetChanged();
+                if (recyclerAdapter != null) {
+                    recyclerAdapter.notifyDataSetChanged();
+                }
+                if (normalAdapter != null) {
+                    normalAdapter.notifyDataSetChanged();
+                }
+
 
                 refreshLayout.setRefreshing(false);
             }
@@ -136,16 +129,16 @@ public class HomeTabFragment extends Fragment {
         // Choice recyclerview
         Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
         RetrofitService retrofitService = retrofit.create(RetrofitService.class);
-        Call<ArrayList<HomeChoice>> call = retrofitService.getChoiceArray();
-        call.enqueue(new Callback<ArrayList<HomeChoice>>() {
+        Call<ArrayList<Recipe>> call = retrofitService.getChoiceArray();
+        call.enqueue(new Callback<ArrayList<Recipe>>() {
             @Override
-            public void onResponse(Call<ArrayList<HomeChoice>> call, Response<ArrayList<HomeChoice>> response) {
+            public void onResponse(Call<ArrayList<Recipe>> call, Response<ArrayList<Recipe>> response) {
                 if (response != null) {
-                    ArrayList<HomeChoice> items = response.body();
+                    ArrayList<Recipe> items = response.body();
 
                     datas.addAll(items);
 
-                    Log.e("length",datas.get(0).img+", "+datas.get(1).img+", "+datas.get(2).img);
+                    //Log.e("length",datas.get(0).img+", "+datas.get(1).img+", "+datas.get(2).img);
 
                     recyclerView = view.findViewById(R.id.recycle01);
                     recyclerAdapter = new HomeChoiceAdapter(context,datas);
@@ -163,7 +156,7 @@ public class HomeTabFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ArrayList<HomeChoice>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<Recipe>> call, Throwable t) {
                 Toast.makeText(context, "트래픽 사용량 초과", Toast.LENGTH_SHORT).show();
             }
         }); //choice part...
@@ -177,14 +170,14 @@ public class HomeTabFragment extends Fragment {
                     ArrayList<HomeSummer> item = response.body();
                     datasSummer.addAll(item);
 
-                    tvSub = getActivity().findViewById(R.id.tv_sub);
+                    tvSub = view.findViewById(R.id.tv_sub);
                     tvSub.setText(datasSummer.size()+"개의 레시피");
 
                     for (int i=0 ; i<3 ; i++){
                         iv = view.findViewById(R.id.iv_01+i);
                         //Glide.with(context).load(imgUrl+"/recipeSummer/"+datasSummer.get(i).img).into(iv);
-                        //Glide.with(context).load(R.drawable.moana).into(iv);
-                        Picasso.get().load(imgUrl+"/recipeSummer/"+datasSummer.get(i).img).into(iv);
+                        Glide.with(view).load(imgUrl+"/recipeSummer/"+datasSummer.get(i).img).into(iv);
+                        //Picasso.get().load(imgUrl+"/recipeSummer/"+datasSummer.get(i).img).into(iv);
 
 
                         Log.e("url",imgUrl+"/recipeSummer/"+datasSummer.get(i).img);
@@ -211,5 +204,12 @@ public class HomeTabFragment extends Fragment {
         datasNormal.add(new HomeNormal(R.string.normal_07_title,R.string.normal_07_msg,R.drawable.normal07));
         datasNormal.add(new HomeNormal(R.string.normal_08_title,R.string.normal_08_msg,R.drawable.normal08));
 
+        normalAdapter = new HomeNormalAdapter(context,datasNormal);
+
+
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context,2);
+        recyclergrid.setLayoutManager(layoutManager);
+
+        recyclergrid.setAdapter(normalAdapter);
     }
 }

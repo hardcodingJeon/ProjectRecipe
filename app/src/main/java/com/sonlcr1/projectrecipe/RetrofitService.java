@@ -3,6 +3,7 @@ package com.sonlcr1.projectrecipe;
 import com.sonlcr1.projectrecipe.member.Board;
 import com.sonlcr1.projectrecipe.member.HomeChoice;
 import com.sonlcr1.projectrecipe.member.HomeSummer;
+import com.sonlcr1.projectrecipe.member.Recipe;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -18,8 +19,11 @@ import retrofit2.http.PartMap;
 public interface RetrofitService {
 
 
-    @GET("/Recipe/recipeChoice/getChoice.php")
-    Call<ArrayList<HomeChoice>> getChoiceArray();
+//    @GET("/Recipe/recipeChoice/getChoice.php")
+//    Call<ArrayList<HomeChoice>> getChoiceArray();
+
+    @GET("/Recipe/recipeData/getRecipe.php")
+    Call<ArrayList<Recipe>> getChoiceArray();
 
     @GET("/Recipe/recipeSummer/getSummer.php")
     Call<ArrayList<HomeSummer>> getSummerArray();
@@ -30,5 +34,8 @@ public interface RetrofitService {
 
     @GET("/Recipe/recipeBoardEdit/recipeBoardLoad.php")
     Call<ArrayList<Board>> loadData();
+
+    @POST("/Recipe/recipeData/getRecipe.php")
+    Call<Recipe> getRecipe();
 }
-//todo : 등록을 누르면 서버에 올린후 바로 내려 받는 php할 차례
+
