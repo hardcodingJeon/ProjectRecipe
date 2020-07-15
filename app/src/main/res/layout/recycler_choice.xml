@@ -12,7 +12,7 @@
         android:scaleType="centerCrop"
         />
     <TextView
-        android:id="@+id/tv_subject"
+        android:id="@+id/tv_ex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="테스트용 subject"
@@ -26,10 +26,22 @@
         android:layout_width="90dp"
         android:layout_height="1dp"
         android:background="#FFFFFFFF"
-        android:layout_above="@id/tv_title"
+        android:layout_above="@id/tv_sub"
         android:layout_marginBottom="12dp"
         android:layout_marginLeft="12dp"
         android:layout_marginTop="3dp"
+        />
+    <TextView
+        android:id="@+id/tv_sub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="테스트용 sub"
+        android:textStyle="bold"
+        android:textColor="#FFFFFFFF"
+        android:textSize="23sp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="12dp"
+        android:layout_above="@id/tv_title"
         />
     <TextView
         android:id="@+id/tv_title"

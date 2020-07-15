@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import com.sonlcr1.projectrecipe.R;
 import com.sonlcr1.projectrecipe.RetrofitHelper;
@@ -47,6 +46,7 @@ public class HomeChoiceRecipe extends AppCompatActivity {
         viewPager.setAdapter(recipeAdapter);
 
         getdata();
+
 
 
 

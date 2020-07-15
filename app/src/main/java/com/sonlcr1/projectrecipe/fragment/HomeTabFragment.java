@@ -76,26 +76,11 @@ public class HomeTabFragment extends Fragment {
         //fragmentActivity = getActivity();
         context = getContext();
 
-
-
         //normal part
         recyclergrid = view.findViewById(R.id.grid);
 
 
-            getdata();
-            normalAdapter = new HomeNormalAdapter(context,datasNormal);
-
-
-            RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context,2);
-            recyclergrid.setLayoutManager(layoutManager);
-
-            recyclergrid.setAdapter(normalAdapter);
-
-
-
-
-
-
+        getdata();
 
 
         return view;
@@ -114,8 +99,13 @@ public class HomeTabFragment extends Fragment {
                 datasSummer.removeAll(datasSummer);
 
                 getdata();
-                recyclerAdapter.notifyDataSetChanged();
-                normalAdapter.notifyDataSetChanged();
+                if (recyclerAdapter != null) {
+                    recyclerAdapter.notifyDataSetChanged();
+                }
+                if (normalAdapter != null) {
+                    normalAdapter.notifyDataSetChanged();
+                }
+
 
                 refreshLayout.setRefreshing(false);
             }
@@ -213,5 +203,12 @@ public class HomeTabFragment extends Fragment {
         datasNormal.add(new HomeNormal(R.string.normal_07_title,R.string.normal_07_msg,R.drawable.normal07));
         datasNormal.add(new HomeNormal(R.string.normal_08_title,R.string.normal_08_msg,R.drawable.normal08));
 
+        normalAdapter = new HomeNormalAdapter(context,datasNormal);
+
+
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context,2);
+        recyclergrid.setLayoutManager(layoutManager);
+
+        recyclergrid.setAdapter(normalAdapter);
     }
 }

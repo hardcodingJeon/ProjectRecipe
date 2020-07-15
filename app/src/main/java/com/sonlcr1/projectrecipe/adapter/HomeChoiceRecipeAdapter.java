@@ -17,6 +17,7 @@ public class HomeChoiceRecipeAdapter extends FragmentPagerAdapter {
         fragments[0] = new RecipePagerFragmentTitle();
         fragments[1] = new RecipePagerFragmentMaterials();
         fragments[2] = new RecipePagerFragmentExplain();
+
     }
 
     @NonNull

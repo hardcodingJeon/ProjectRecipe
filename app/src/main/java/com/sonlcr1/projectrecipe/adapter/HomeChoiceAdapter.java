@@ -47,8 +47,9 @@ public class HomeChoiceAdapter extends RecyclerView.Adapter {
 
         String imgUrl = "http://jeondh9971.dothome.co.kr/Recipe/recipeChoice/" + items.img;
 
-        vh.tvSubject.setText(items.subject);
-        vh.tvTitle.setText(items.title);
+        vh.tvEx.setText(items.subject);
+        vh.tvSub.setText(items.tvsub);
+        vh.tvTitle.setText(items.tvtitle);
         Glide.with(context).load(imgUrl).into(vh.imgMain);
 
 
@@ -61,31 +62,30 @@ public class HomeChoiceAdapter extends RecyclerView.Adapter {
     }
 
     class VH extends RecyclerView.ViewHolder{
-        TextView tvSubject;
+        TextView tvEx;
         TextView tvTitle;
+        TextView tvSub;
         ImageView imgMain;
 
 
         public VH(@NonNull View itemView) {
             super(itemView);
-            tvSubject = itemView.findViewById(R.id.tv_subject);
+            tvEx = itemView.findViewById(R.id.tv_ex);
             tvTitle = itemView.findViewById(R.id.tv_title);
+            tvSub = itemView.findViewById(R.id.tv_sub);
             imgMain = itemView.findViewById(R.id.iv_main);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    switch (getLayoutPosition()){
-                        case 0:
-                            Intent intent = new Intent(context, HomeChoiceRecipe.class);
-                            //여기서 put 데이터로 레시피 제목 넣을것
-                            context.startActivity(intent);
-                            break;
-                        case 1:
-                            break;
-                        case 2:
-                            break;
-                    }
+                    HomeChoice data = datas.get(getLayoutPosition());
+
+                    Intent intent = new Intent(context,HomeChoiceRecipe.class);
+                    intent.putExtra("tvSub",data.tvsub);
+                    intent.putExtra("tvTitle",data.tvtitle);
+                    intent.putExtra("img",data.img);
+
+                    context.startActivity(intent);
 
                 }
             });

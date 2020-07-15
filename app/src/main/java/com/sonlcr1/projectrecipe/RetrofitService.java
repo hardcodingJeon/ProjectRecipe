@@ -22,6 +22,9 @@ public interface RetrofitService {
     @GET("/Recipe/recipeChoice/getChoice.php")
     Call<ArrayList<HomeChoice>> getChoiceArray();
 
+//    @GET("/Recipe/recipeData/getRecipe.php")
+//    Call<ArrayList<HomeChoice>> getChoiceArray();
+
     @GET("/Recipe/recipeSummer/getSummer.php")
     Call<ArrayList<HomeSummer>> getSummerArray();
 
