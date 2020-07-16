@@ -9,6 +9,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.sonlcr1.projectrecipe.adapter.PagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
+    //이미지가 안뜸
 
     ViewPager viewPager;
     TabLayout tabLayout;
