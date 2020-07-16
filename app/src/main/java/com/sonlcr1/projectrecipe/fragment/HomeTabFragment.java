@@ -111,6 +111,9 @@ public class HomeTabFragment extends Fragment {
                 refreshLayout.setRefreshing(false);
             }
         });
+        Log.e("datasize",datas.size()+"");
+
+
     }
 
     @Override
@@ -151,6 +154,17 @@ public class HomeTabFragment extends Fragment {
                     SnapHelper snapHelper = new PagerSnapHelper();
                     snapHelper.attachToRecyclerView(recyclerView);
 
+                    for (int i=3 ; i<6 ; i++){
+                        iv = view.findViewById(R.id.iv_01+(i-3));
+                        //Glide.with(context).load(imgUrl+"/recipeSummer/"+datasSummer.get(i).img).into(iv);
+                        Glide.with(view).load(imgUrl+"/recipeData/"+datas.get(i).firstimg).into(iv);
+                        //Picasso.get().load(imgUrl+"/recipeSummer/"+datasSummer.get(i).img).into(iv);
+
+
+                        tv = view.findViewById(R.id.tv_01+(i-3));
+                        tv.setText(datas.get(i).firsttitle);
+                    }
+
                 }
 
             }
@@ -161,39 +175,7 @@ public class HomeTabFragment extends Fragment {
             }
         }); //choice part...
 
-        //summer part
-        Call<ArrayList<HomeSummer>> call2 = retrofitService.getSummerArray();
-        call2.enqueue(new Callback<ArrayList<HomeSummer>>() {
-            @Override
-            public void onResponse(Call<ArrayList<HomeSummer>> call, Response<ArrayList<HomeSummer>> response) {
-                if (response != null) {
-                    ArrayList<HomeSummer> item = response.body();
-                    datasSummer.addAll(item);
 
-                    tvSub = view.findViewById(R.id.tv_sub);
-                    tvSub.setText(datasSummer.size()+"개의 레시피");
-
-                    for (int i=0 ; i<3 ; i++){
-                        iv = view.findViewById(R.id.iv_01+i);
-                        //Glide.with(context).load(imgUrl+"/recipeSummer/"+datasSummer.get(i).img).into(iv);
-                        Glide.with(view).load(imgUrl+"/recipeSummer/"+datasSummer.get(i).img).into(iv);
-                        //Picasso.get().load(imgUrl+"/recipeSummer/"+datasSummer.get(i).img).into(iv);
-
-
-                        Log.e("url",imgUrl+"/recipeSummer/"+datasSummer.get(i).img);
-
-                        tv = view.findViewById(R.id.tv_01+i);
-                        tv.setText(datasSummer.get(i).title);
-                    }
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<HomeSummer>> call, Throwable t) {
-
-            }
-        }); //summer part....
 
         datasNormal.add(new HomeNormal(R.string.normal_01_title,R.string.normal_01_msg,R.drawable.normal01));
         datasNormal.add(new HomeNormal(R.string.normal_02_title,R.string.normal_02_msg,R.drawable.normal02));

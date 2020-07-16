@@ -71,4 +71,12 @@ public class RecipePagerFragmentExplain extends Fragment {
         return view;
 
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        datas.removeAll(datas);
+        adapter.notifyDataSetChanged();
+
+    }
 }

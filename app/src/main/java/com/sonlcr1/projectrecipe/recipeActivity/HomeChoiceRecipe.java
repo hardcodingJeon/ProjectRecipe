@@ -53,32 +53,32 @@ public class HomeChoiceRecipe extends AppCompatActivity {
         }
 
 
-        getdata();
+        //getdata();
 
 
 
 
     }//onCreate....
 
-    void getdata(){
-        Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
-        RetrofitService retrofitService = retrofit.create(RetrofitService.class);
-        Call<Recipe> call = retrofitService.getRecipe();    //여기에 레시피 제목 데이터를 파라미터로 넣고 이용해 그 줄의 데이터를 읽어 올것임.
-        call.enqueue(new Callback<Recipe>() {
-            @Override
-            public void onResponse(Call<Recipe> call, Response<Recipe> response) {
-                if (response.isSuccessful()) {
-                    //이미 VO클래스 멤버 변수에 값 들어감
-                    Recipe data = response.body();
-                    Log.e("Recipe",""+data.firstimg+", "+data.firstsub+", "+data.firsttitle);
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Recipe> call, Throwable t) {
-                Log.e("Recipefail","retrofit fail");
-            }
-        });
-    }
+//    void getdata(){
+//        Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
+//        RetrofitService retrofitService = retrofit.create(RetrofitService.class);
+//        Call<Recipe> call = retrofitService.getRecipe();    //여기에 레시피 제목 데이터를 파라미터로 넣고 이용해 그 줄의 데이터를 읽어 올것임.
+//        call.enqueue(new Callback<Recipe>() {
+//            @Override
+//            public void onResponse(Call<Recipe> call, Response<Recipe> response) {
+//                if (response.isSuccessful()) {
+//                    //이미 VO클래스 멤버 변수에 값 들어감
+//                    Recipe data = response.body();
+//                    Log.e("Recipe",""+data.firstimg+", "+data.firstsub+", "+data.firsttitle);
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Recipe> call, Throwable t) {
+//                Log.e("Recipefail","retrofit fail");
+//            }
+//        });
+//    }
 }

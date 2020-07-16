@@ -63,7 +63,7 @@
                     android:id="@+id/tv_sub"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="테스트용"
+                    android:text="3개의 레시피"
                     android:layout_marginBottom="10dp"
                     app:layout_constraintBottom_toTopOf="@id/iv_01"
                     app:layout_constraintRight_toRightOf="@id/iv_03"
@@ -81,6 +81,7 @@
                     android:src="@drawable/ic_launcher_background"
                     android:scaleType="centerCrop"
                     tools:ignore="MissingConstraints"
+                    android:clickable="true"
                     />
 
 
@@ -95,8 +96,8 @@
                     app:layout_constraintHorizontal_weight="1"
                     android:src="@drawable/ic_launcher_background"
                     android:scaleType="centerCrop"
-
                     tools:ignore="MissingConstraints"
+                    android:clickable="true"
                     />
 
                 <ImageView
@@ -111,8 +112,8 @@
                     android:src="@drawable/ic_launcher_background"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
-
                     tools:ignore="MissingConstraints"
+                    android:clickable="true"
                     />
 
                 <TextView
