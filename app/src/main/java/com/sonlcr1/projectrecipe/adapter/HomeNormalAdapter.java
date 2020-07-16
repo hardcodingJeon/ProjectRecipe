@@ -15,6 +15,8 @@ import com.sonlcr1.projectrecipe.R;
 import com.sonlcr1.projectrecipe.member.HomeNormal;
 import com.sonlcr1.projectrecipe.member.Recipe;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class HomeNormalAdapter extends RecyclerView.Adapter {
@@ -46,7 +48,11 @@ public class HomeNormalAdapter extends RecyclerView.Adapter {
 
         vh.msg.setText(datas.get(position).firstsub);
         vh.title.setText(datas.get(position).firsttitle);
-        Glide.with(context).load(imgUrl).into(vh.iv);
+        try {
+            Glide.with(context).load(new URL(imgUrl)).into(vh.iv);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

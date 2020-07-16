@@ -169,9 +169,10 @@ public class HomeTabFragment extends Fragment {
                     snapHelper.attachToRecyclerView(recyclerView);
 
 
-
+                    datasSummer.add(items.get(3));
+                    datasSummer.add(items.get(4));
+                    datasSummer.add(items.get(5));
                     for (int i=3 ; i<6 ; i++){
-                        datasSummer.add(items.get(i));
                         iv3 = view.findViewById(R.id.iv_01+(i-3));
                         Glide.with(view).load(imgUrl+"/recipeData/"+datasSummer.get(i-3).firstimg).into(iv3);
 
