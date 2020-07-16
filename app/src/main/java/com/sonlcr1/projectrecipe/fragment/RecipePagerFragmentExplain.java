@@ -57,10 +57,10 @@ public class RecipePagerFragmentExplain extends Fragment {
         datas.add(new Recipe(null,null,null,null,null,null,null,null,null,fourthimg,fourthmsg,null,null,null,null,null,null,null,null,null,null));
         datas.add(new Recipe(null,null,null,null,null,null,null,null,null,fifthimg,fifthmsg,null,null,null,null,null,null,null,null,null,null));
         datas.add(new Recipe(null,null,null,null,null,null,null,null,null,sixthimg,sixthmsg,null,null,null,null,null,null,null,null,null,null));
-        datas.add(new Recipe(null,null,null,null,null,null,null,null,null,seventhimg,seventhmsg,null,null,null,null,null,null,null,null,null,null));
-        datas.add(new Recipe(null,null,null,null,null,null,null,null,null,eighthimg,eighthmsg,null,null,null,null,null,null,null,null,null,null));
+        if (seventhimg!=null&&seventhmsg!=null) datas.add(new Recipe(null,null,null,null,null,null,null,null,null,seventhimg,seventhmsg,null,null,null,null,null,null,null,null,null,null));
+        if (eighthimg!=null&&eighthmsg!=null) datas.add(new Recipe(null,null,null,null,null,null,null,null,null,eighthimg,eighthmsg,null,null,null,null,null,null,null,null,null,null));
 
-        if (!thirdimg.equals("")) {
+        if (!thirdimg.isEmpty()) {
             adapter = new RecipeAdapter(context,datas);
             recyclerView.setAdapter(adapter);
             SnapHelper snapHelper = new PagerSnapHelper();

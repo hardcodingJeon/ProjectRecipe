@@ -13,18 +13,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.sonlcr1.projectrecipe.R;
 import com.sonlcr1.projectrecipe.member.HomeNormal;
+import com.sonlcr1.projectrecipe.member.Recipe;
 
 import java.util.ArrayList;
 
 public class HomeNormalAdapter extends RecyclerView.Adapter {
 
     Context context;
-    ArrayList<HomeNormal> datas;
+    ArrayList<Recipe> datas;
 
     public HomeNormalAdapter() {
     }
 
-    public HomeNormalAdapter(Context context, ArrayList<HomeNormal> datas) {
+    public HomeNormalAdapter(Context context, ArrayList<Recipe> datas) {
         this.context = context;
         this.datas = datas;
     }
@@ -41,9 +42,11 @@ public class HomeNormalAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         VH vh = (VH)holder;
 
-        vh.msg.setText(datas.get(position).msg);
-        vh.title.setText(datas.get(position).title);
-        Glide.with(context).load(datas.get(position).img).into(vh.iv);
+        String imgUrl = "http://jeondh9971.dothome.co.kr/Recipe/recipeData/" + datas.get(position).firstimg;
+
+        vh.msg.setText(datas.get(position).firstsub);
+        vh.title.setText(datas.get(position).firsttitle);
+        Glide.with(context).load(imgUrl).into(vh.iv);
     }
 
     @Override
@@ -61,6 +64,13 @@ public class HomeNormalAdapter extends RecyclerView.Adapter {
             msg = itemView.findViewById(R.id.tv_msg);
             title = itemView.findViewById(R.id.tv_title);
             iv = itemView.findViewById(R.id.iv);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
         }
     }
 }

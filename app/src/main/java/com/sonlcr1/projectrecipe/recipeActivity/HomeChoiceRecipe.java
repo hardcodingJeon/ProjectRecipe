@@ -44,7 +44,7 @@ public class HomeChoiceRecipe extends AppCompatActivity {
         });
 
         String s = getIntent().getStringExtra("thirdmsg");
-        if (s.equals("")){
+        if (s == null){
             HomeChoiceRecipeAdapter2 recipeAdapter2 = new HomeChoiceRecipeAdapter2(getSupportFragmentManager());
             viewPager.setAdapter(recipeAdapter2);
         }else{

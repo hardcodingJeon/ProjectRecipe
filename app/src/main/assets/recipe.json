@@ -1,0 +1,11 @@
+[
+  {"firstsub":"여름 냄새 걱정 끝", "firsttitle":"천연 탈취제","firstimg":"./choiceimg/choiceimg01.png" , "secondessential":"탈취제 준비물","secondessentialmsg" :"통, 에탄올, 레몬껍질, 녹차티백, 로즈마리" , "secondchoice":"냄새 제거제 준비물" , "secondchoicemsg":"통, 베이킹소다, 전분, 물" },
+  {"firstsub":"간단요리", "firsttitle":"오이샌드위치","firstimg":"./normalimg/normal02.png" , "secondessential":"필수재료","secondessentialmsg" :"오이(1개),식빵(2장),크림치즈(1),통후추(약간),소금(약간)" , "secondchoice":"선택재료" , "secondchoicemsg":"파슬리가루(약간)" ,"secondsource": null, "secondsourcemsg": null, "thirdimg":"./normalimg/recipe0201.png" , "thirdmsg":"오이는 소금으로 문질러 씻은뒤 얇게 슬라이스한다" , "fourthimg":"./normalimg/recipe0202.png" , "fourthmsg":"식빵 한쪽 면에 크림치즈를 바른다" , "fifthimg":"./normalimg/recipe0203.png" , "fifthmsg":"오이를 식빵위에 사선으로 포개 올린다" ,"sixthimg" :"./normalimg/recipe0204.png" ,"sixthmsg": "식빵 가장자리를 칼로 잘라낸 뒤 통후추를 갈아 뿌리고 소금도 뿌린다", "seventhimg":"./normalimg/recipe0205.png" ,"seventhmsg" :"오이를 얹은 방향과 직각이 되로록 사선으로 이등분하고 파슬리가루를 뿌려 마무리" ,"eighthimg" :null , "eighthmsg": null },
+  {"firstsub":"바다의 보물", "firsttitle":"전복 손질법","firstimg":"./normalimg/normal03.png" },
+  {"firstsub":"딱딱하게 굳은 모닝빵도 ok", "firsttitle":"모닝빵 멘보샤","firstimg":"./normalimg/normal04.png" },
+  {"firstsub":"집에 있는 재료로 간단하게", "firsttitle":"고추참치볶음밥","firstimg":"./normalimg/normal05.png" },
+  {"firstsub":"바삭하게 채우는", "firsttitle":"타이 크런치 샐러드","firstimg":"./normalimg/normal06.png" },
+  {"firstsub":"숙취 없는", "firsttitle":"막걸리 모히토","firstimg":"./normalimg/normal07.png" },
+  {"firstsub":"냉장고에 남은 무생채를 활용한", "firsttitle":"무생채전","firstimg":"./normalimg/normal08.png" }
+
+]
