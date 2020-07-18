@@ -51,7 +51,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class HomeTabFragment extends Fragment {
-    //dothome
+    //hotfixthird
 
     String imgUrl = "http://jeondh9971.dothome.co.kr/Recipe";  //뒤에 주소 덧 붙여야함
 
