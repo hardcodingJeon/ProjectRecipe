@@ -1,5 +1,6 @@
 package com.sonlcr1.projectrecipe.fragment;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -76,6 +78,8 @@ public class HomeTabFragment extends Fragment {
     SwipeRefreshLayout refreshLayout;
     View view;
 
+    ProgressDialog dialog;
+
 
     @Nullable
     @Override
@@ -90,6 +94,11 @@ public class HomeTabFragment extends Fragment {
 
         //normal part
         recyclergrid = view.findViewById(R.id.grid);
+
+        dialog = new ProgressDialog(context);
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
 
 
         getdata();
@@ -213,7 +222,7 @@ public class HomeTabFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ArrayList<Recipe>> call, Throwable t) {
-                Toast.makeText(context, "트래픽 사용량 초과", Toast.LENGTH_SHORT).show();
+                new AlertDialog.Builder(context).setMessage(t.toString()).create().show();
             }
         }); //choice part...
 
@@ -258,6 +267,8 @@ public class HomeTabFragment extends Fragment {
         recyclergrid.setLayoutManager(layoutManager);
 
         recyclergrid.setAdapter(normalAdapter);
+
+        dialog.dismiss();
     }
 
     void sendPutExtra(Recipe data){
