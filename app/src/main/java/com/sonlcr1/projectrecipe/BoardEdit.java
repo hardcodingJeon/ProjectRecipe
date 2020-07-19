@@ -62,7 +62,7 @@ public class BoardEdit extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);    //기존 툴바 제목을 지우는 코드
 
         et = findViewById(R.id.et);
         iv = findViewById(R.id.iv);

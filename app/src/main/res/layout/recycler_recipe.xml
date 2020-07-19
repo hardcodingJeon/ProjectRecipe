@@ -38,6 +38,16 @@
                 android:padding="5dp"
                 />
             <TextView
+                android:id="@+id/tv_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="40sp"
+                android:textColor="@color/recipeSymbol"
+                android:layout_margin="10dp"
+                android:layout_below="@id/iv"
+                />
+            <TextView
                 android:id="@+id/tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -46,6 +56,8 @@
                 android:textSize="23sp"
                 android:layout_margin="10dp"
                 android:layout_below="@id/iv"
+                android:layout_toRightOf="@id/tv_num"
+                android:layout_alignTop="@id/tv_num"
                 />
 
 

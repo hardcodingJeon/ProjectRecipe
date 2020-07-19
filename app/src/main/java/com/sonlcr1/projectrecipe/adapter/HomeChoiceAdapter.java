@@ -14,9 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.sonlcr1.projectrecipe.R;
-import com.sonlcr1.projectrecipe.member.HomeChoice;
 import com.sonlcr1.projectrecipe.member.Recipe;
-import com.sonlcr1.projectrecipe.recipeActivity.HomeChoiceRecipe;
+import com.sonlcr1.projectrecipe.recipeActivity.RecipeActivity;
 
 import java.util.ArrayList;
 
@@ -85,7 +84,9 @@ public class HomeChoiceAdapter extends RecyclerView.Adapter {
                 public void onClick(View v) {
                     Recipe data = datas.get(getLayoutPosition());
 
-                    Intent intent = new Intent(context,HomeChoiceRecipe.class);
+                    Intent intent = new Intent(context, RecipeActivity.class);
+                    //intent.putExtra("Recipe",data.getClass());
+
                     intent.putExtra("firstsub",data.firstsub);
                     intent.putExtra("firsttile",data.firsttitle);
                     intent.putExtra("firstimg",data.firstimg);

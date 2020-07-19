@@ -20,7 +20,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class HomeChoiceRecipe extends AppCompatActivity {
+public class RecipeActivity extends AppCompatActivity {
 
     //이거 집에서 받아지나
     ImageView ivback;
@@ -42,7 +42,9 @@ public class HomeChoiceRecipe extends AppCompatActivity {
             }
         });
 
+
         String thirdimg = getIntent().getStringExtra("thirdmsg");
+
         if (thirdimg == null){
             HomeChoiceRecipeAdapter2 recipeAdapter2 = new HomeChoiceRecipeAdapter2(getSupportFragmentManager());
             viewPager.setAdapter(recipeAdapter2);

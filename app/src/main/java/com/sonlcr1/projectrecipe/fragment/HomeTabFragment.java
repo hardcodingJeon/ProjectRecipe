@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -24,27 +22,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.sonlcr1.projectrecipe.R;
-import com.sonlcr1.projectrecipe.RetrofitHelper;
-import com.sonlcr1.projectrecipe.RetrofitService;
 import com.sonlcr1.projectrecipe.adapter.HomeChoiceAdapter;
 import com.sonlcr1.projectrecipe.adapter.HomeNormalAdapter;
 import com.sonlcr1.projectrecipe.member.Recipe;
-import com.sonlcr1.projectrecipe.recipeActivity.HomeChoiceRecipe;
-import com.squareup.picasso.Picasso;
+import com.sonlcr1.projectrecipe.recipeActivity.RecipeActivity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class HomeTabFragment extends Fragment {
     //hotfixthird
@@ -136,7 +125,7 @@ public class HomeTabFragment extends Fragment {
         AssetManager assetManager = mContext.getAssets();
         StringBuffer buffer = new StringBuffer();
         try {
-            InputStream inputStream = assetManager.open("home_tab.json");
+            InputStream inputStream = assetManager.open("home_tab_recipe.json");
             InputStreamReader isr = new InputStreamReader(inputStream);
             BufferedReader reader = new BufferedReader(isr);
 
@@ -263,7 +252,7 @@ public class HomeTabFragment extends Fragment {
 //        AssetManager assetManager = getContext().getAssets();
 //        StringBuffer buffer = new StringBuffer();
 //        try {
-//            InputStream is = assetManager.open("home_tab.json");
+//            InputStream is = assetManager.open("home_tab_recipe.json");
 //            InputStreamReader isr = new InputStreamReader(is);
 //            BufferedReader reader = new BufferedReader(isr);
 //
@@ -317,7 +306,7 @@ public class HomeTabFragment extends Fragment {
 
 
     void sendPutExtra(Recipe data){
-        Intent intent = new Intent(mContext, HomeChoiceRecipe.class);
+        Intent intent = new Intent(mContext, RecipeActivity.class);
         intent.putExtra("firstsub",data.firstsub);
         intent.putExtra("firsttile",data.firsttitle);
         intent.putExtra("firstimg",data.firstimg);
