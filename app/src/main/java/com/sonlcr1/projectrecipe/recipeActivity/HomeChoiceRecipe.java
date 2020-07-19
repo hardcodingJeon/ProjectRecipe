@@ -25,7 +25,6 @@ public class HomeChoiceRecipe extends AppCompatActivity {
     //이거 집에서 받아지나
     ImageView ivback;
     ViewPager viewPager;
-    Recipe data;
 
 
     @Override
@@ -43,8 +42,8 @@ public class HomeChoiceRecipe extends AppCompatActivity {
             }
         });
 
-        String s = getIntent().getStringExtra("thirdmsg");
-        if (s == null){
+        String thirdimg = getIntent().getStringExtra("thirdmsg");
+        if (thirdimg == null){
             HomeChoiceRecipeAdapter2 recipeAdapter2 = new HomeChoiceRecipeAdapter2(getSupportFragmentManager());
             viewPager.setAdapter(recipeAdapter2);
         }else{

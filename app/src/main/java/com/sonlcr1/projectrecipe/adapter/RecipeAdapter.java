@@ -1,6 +1,7 @@
 package com.sonlcr1.projectrecipe.adapter;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,13 +21,15 @@ public class RecipeAdapter extends RecyclerView.Adapter {
 
     Context context;
     ArrayList<Recipe> datas;
+    Resources resources;
 
     public RecipeAdapter() {
     }
 
-    public RecipeAdapter(Context context, ArrayList<Recipe> datas) {
+    public RecipeAdapter(Context context, ArrayList<Recipe> datas,Resources resources) {
         this.context = context;
         this.datas = datas;
+        this.resources = resources;
     }
 
     @NonNull
@@ -42,9 +45,9 @@ public class RecipeAdapter extends RecyclerView.Adapter {
         VH vh = (VH)holder;
         Recipe data = datas.get(position);
 
-        String imgUrl = "http://jeondh9971.dothome.co.kr/Recipe/recipeData/";
         vh.tv.setText(data.thirdmsg);
-        Glide.with(context).load(imgUrl+data.thirdimg).into(vh.iv);
+        int resId = resources.getIdentifier(data.thirdimg,"drawable","com.sonlcr1.projectrecipe");
+        Glide.with(context).load(resId).into(vh.iv);
     }
 
     @Override

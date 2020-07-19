@@ -29,7 +29,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="horizontal"
                 android:clickable="true"
-                android:background="@drawable/ic_launcher_background"
+                android:background="#EEEEEE"
                 />
 
             <include layout="@layout/borderline"
@@ -39,12 +39,7 @@
                 android:layout_below="@id/recycle01"/>
 
             <!-- 여름술안주 -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraint01"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_below="@id/incl01"
-                android:layout_marginTop="10dp">
+
 
                 <TextView
                     android:id="@+id/tv_title"
@@ -55,8 +50,9 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="10dp"
-                    app:layout_constraintLeft_toLeftOf="@id/iv_01"
-                    app:layout_constraintBottom_toTopOf="@id/iv_01"
+                    android:layout_below="@id/incl01"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     />
 
                 <TextView
@@ -65,113 +61,30 @@
                     android:layout_height="wrap_content"
                     android:text="3개의 레시피"
                     android:layout_marginBottom="10dp"
-                    app:layout_constraintBottom_toTopOf="@id/iv_01"
-                    app:layout_constraintRight_toRightOf="@id/iv_03"
+                    android:layout_below="@id/incl01"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
                     />
 
-                <ImageView
-                    android:id="@+id/iv_01"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toLeftOf="@id/iv_02"
-                    app:layout_constraintHorizontal_weight="1"
-                    android:src="@drawable/ic_launcher_background"
-                    android:scaleType="centerCrop"
-                    tools:ignore="MissingConstraints"
-                    android:clickable="true"
-                    />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycle02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_title"
+                android:layout_margin="10dp"
+                />
 
 
-                <ImageView
-                    android:id="@+id/iv_02"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/iv_01"
-                    app:layout_constraintRight_toLeftOf="@id/iv_03"
-                    app:layout_constraintHorizontal_weight="1"
-                    android:src="@drawable/ic_launcher_background"
-                    android:scaleType="centerCrop"
-                    tools:ignore="MissingConstraints"
-                    android:clickable="true"
-                    />
-
-                <ImageView
-                    android:id="@+id/iv_03"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/iv_02"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintHorizontal_weight="1"
-                    android:src="@drawable/ic_launcher_background"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
-                    tools:ignore="MissingConstraints"
-                    android:clickable="true"
-                    />
-
-                <TextView
-                    android:id="@+id/tv_01"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="테스트용"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    app:layout_constraintTop_toBottomOf="@id/iv_01"
-                    app:layout_constraintLeft_toLeftOf="@id/iv_01"
-                    app:layout_constraintRight_toRightOf="@id/iv_01"
-                    app:layout_constraintHorizontal_weight="1"
-                    android:src="@drawable/ic_launcher_background"
-                    tools:ignore="MissingConstraints"
-                    />
 
 
-                <TextView
-                    android:id="@+id/tv_02"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:src="@drawable/ic_launcher_background"
-                    android:text="테스트용"
-                    android:textStyle="bold"
-                    app:layout_constraintHorizontal_bias="0.49"
-                    app:layout_constraintHorizontal_weight="1"
-                    app:layout_constraintLeft_toLeftOf="@id/iv_02"
-                    app:layout_constraintRight_toRightOf="@id/iv_02"
 
-                    app:layout_constraintTop_toBottomOf="@id/iv_01"
-                    tools:ignore="MissingConstraints" />
-
-                <TextView
-                    android:id="@+id/tv_03"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="테스트용"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    app:layout_constraintTop_toBottomOf="@id/iv_01"
-                    app:layout_constraintLeft_toLeftOf="@id/iv_03"
-                    app:layout_constraintRight_toRightOf="@id/iv_03"
-                    app:layout_constraintHorizontal_weight="1"
-                    android:src="@drawable/ic_launcher_background"
-
-                    tools:ignore="MissingConstraints"
-                    />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <include layout="@layout/borderline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/incl02"
-                android:layout_below="@id/constraint01"/>
+                android:layout_below="@id/recycle02"/>
 
             <!-- 디저트 -->
             <RelativeLayout
@@ -229,16 +142,13 @@
 
             <!-- normal -->
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/grid"
+                android:id="@+id/recy_grid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/incl03"
+                android:nestedScrollingEnabled="false"
                 />
             <!-- 레이아웃 매니저 설정 할것 -->
-
-
-
-
 
 
 

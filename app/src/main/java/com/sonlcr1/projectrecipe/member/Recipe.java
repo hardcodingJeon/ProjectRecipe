@@ -26,6 +26,11 @@ public class Recipe {
     public Recipe() {
     }
 
+    public Recipe(String thirdimg, String thirdmsg){
+        this.thirdimg = thirdimg;
+        this.thirdmsg = thirdmsg;
+    }
+
     public Recipe(String firstimg,
                   String firstsub,
                   String firsttitle,

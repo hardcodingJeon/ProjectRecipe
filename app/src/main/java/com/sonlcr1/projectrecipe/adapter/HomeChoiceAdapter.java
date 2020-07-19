@@ -2,6 +2,7 @@ package com.sonlcr1.projectrecipe.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,13 +24,15 @@ public class HomeChoiceAdapter extends RecyclerView.Adapter {
 
     Context context;
     ArrayList<Recipe> datas = new ArrayList<>();
+    Resources resources;
 
     public HomeChoiceAdapter() {
     }
 
-    public HomeChoiceAdapter(Context context, ArrayList<Recipe> datas) {
+    public HomeChoiceAdapter(Context context, ArrayList<Recipe> datas, Resources resources) {
         this.context = context;
         this.datas = datas;
+        this.resources = resources;
     }
 
     @NonNull
@@ -46,12 +49,13 @@ public class HomeChoiceAdapter extends RecyclerView.Adapter {
         VH vh = (VH)holder;
         Recipe items = datas.get(position);
 
-        String imgUrl = "http://jeondh9971.dothome.co.kr/Recipe/recipeData/" + items.firstimg;
+        //String imgUrl = "http://jeondh9971.dothome.co.kr/Recipe/recipeData/" + items.firstimg;
 
 
         vh.tvSub.setText(items.firstsub);
         vh.tvTitle.setText(items.firsttitle);
-        Glide.with(context).load(imgUrl).into(vh.imgMain);
+        int resId = resources.getIdentifier(items.firstimg,"drawable","com.sonlcr1.projectrecipe");
+        Glide.with(context).load(resId).into(vh.imgMain);
 
 
 

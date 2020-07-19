@@ -73,7 +73,8 @@ public class BoardTabFragment extends Fragment {
 //        datas.add(new Board(null,"1","1","msg1",null,0,1,"1"));
 //        datas.add(new Board(null,"2","2","msg2",null,0,2,"2"));
 
-        activity();
+        // 서버측 트래픽 문제로 일단 주석 처리
+        //activity();
 
 
 
@@ -96,7 +97,7 @@ public class BoardTabFragment extends Fragment {
             @Override
             public void onRefresh() {
                 datas.removeAll(datas);
-                activity();
+                //activity();
                 refreshLayout.setRefreshing(false);
             }
         });

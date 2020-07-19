@@ -4,15 +4,14 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,9 +31,6 @@ import com.sonlcr1.projectrecipe.RetrofitHelper;
 import com.sonlcr1.projectrecipe.RetrofitService;
 import com.sonlcr1.projectrecipe.adapter.HomeChoiceAdapter;
 import com.sonlcr1.projectrecipe.adapter.HomeNormalAdapter;
-import com.sonlcr1.projectrecipe.member.HomeChoice;
-import com.sonlcr1.projectrecipe.member.HomeNormal;
-import com.sonlcr1.projectrecipe.member.HomeSummer;
 import com.sonlcr1.projectrecipe.member.Recipe;
 import com.sonlcr1.projectrecipe.recipeActivity.HomeChoiceRecipe;
 import com.squareup.picasso.Picasso;
@@ -58,11 +54,12 @@ public class HomeTabFragment extends Fragment {
     TextView tv, tvSub;
     ImageView iv1,iv2,iv3;
 
-    Context context;
+    Context mContext;
     FragmentActivity fragmentActivity;
 
     RecyclerView recyclerView;
     RecyclerView recyclergrid;
+    RecyclerView recyclerView2;
 
     //ArrayList<Recipe> datas = new ArrayList<>();
     ArrayList<Recipe> datasChoice = new ArrayList<>();
@@ -74,11 +71,14 @@ public class HomeTabFragment extends Fragment {
 
     HomeChoiceAdapter recyclerAdapter;
     HomeNormalAdapter normalAdapter;
+    HomeNormalAdapter normalAdapter2;
 
     SwipeRefreshLayout refreshLayout;
     View view;
 
     ProgressDialog dialog;
+    Resources resources;
+
 
 
     @Nullable
@@ -86,30 +86,14 @@ public class HomeTabFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_hometab,container,false);
-
         refreshLayout = view.findViewById(R.id.refresh);
-
-        //fragmentActivity = getActivity();
-        context = getContext();
-
-        //normal part
-        recyclergrid = view.findViewById(R.id.grid);
-
-        dialog = new ProgressDialog(context);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
-
+        mContext = getContext();
+        recyclergrid = view.findViewById(R.id.recy_grid);
+        recyclerView = view.findViewById(R.id.recycle01);
+        recyclerView2 = view.findViewById(R.id.recycle02);
+        resources = getResources();
 
         getdata();
-
-
-        return view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
 
         //리프레쉬
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -131,10 +115,189 @@ public class HomeTabFragment extends Fragment {
                 refreshLayout.setRefreshing(false);
             }
         });
-        //Log.e("datasize",datas.size()+"");
+
+        return view;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        //getdata();
+    }
+
+    void getdata(){
+        AssetManager assetManager = mContext.getAssets();
+        StringBuffer buffer = new StringBuffer();
+        try {
+            InputStream inputStream = assetManager.open("home_tab.json");
+            InputStreamReader isr = new InputStreamReader(inputStream);
+            BufferedReader reader = new BufferedReader(isr);
+
+            while (true){
+                String line = reader.readLine();
+                if (line == null) break;
+                buffer.append(line+"\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Gson gson = new Gson();
+        Recipe[] recipes = gson.fromJson(buffer.toString(),Recipe[].class);
+        for (int i=0;i<3;i++){
+            datasChoice.add(recipes[i]);
+        }
+        for (int i=3;i<6;i++){
+            datasSummer.add(recipes[i]);
+        }
+        for (int i=6;i<recipes.length;i++){
+            datasNormal.add(recipes[i]);
+        }
+
+        //choice
+        recyclerAdapter = new HomeChoiceAdapter(mContext,datasChoice,resources);
+        recyclerView.setAdapter(recyclerAdapter);
+        recyclerView.setOnFlingListener(null);
+        SnapHelper snapHelper = new PagerSnapHelper();
+        snapHelper.attachToRecyclerView(recyclerView);
+
+        //summer
+        normalAdapter2 = new HomeNormalAdapter(mContext,datasSummer,resources);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(mContext,3);
+        recyclerView2.setLayoutManager(layoutManager);
+        recyclerView2.setAdapter(normalAdapter2);
+
+        //normal
+        normalAdapter = new HomeNormalAdapter(mContext,datasNormal,resources);
+        RecyclerView.LayoutManager layoutManager2 = new GridLayoutManager(mContext,2);
+        recyclergrid.setLayoutManager(layoutManager2);
+        recyclergrid.setAdapter(normalAdapter);
 
 
     }
+
+//    void getdata_ex(){
+//        // Choice recyclerview
+//        Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
+//        RetrofitService retrofitService = retrofit.create(RetrofitService.class);
+//        Call<ArrayList<Recipe>> call = retrofitService.getChoiceArray();
+//        call.enqueue(new Callback<ArrayList<Recipe>>() {
+//            @Override
+//            public void onResponse(Call<ArrayList<Recipe>> call, Response<ArrayList<Recipe>> response) {
+//                if (response != null) {
+//                    ArrayList<Recipe> items = response.body();
+//
+//                    for (int i=0;i<3;i++){
+//                        datasChoice.add(items.get(i));
+//                    }
+//
+//
+//                    //Log.e("length",datas.get(0).img+", "+datas.get(1).img+", "+datas.get(2).img);
+//
+//
+//
+//
+//                    //java.lang.IllegalStateException: An instance of OnFlingListener already set. 에러 수정하는 코드, setOnFlingListener(null);
+//
+//
+//
+//
+//
+//                    datasSummer.add(items.get(3));
+//                    datasSummer.add(items.get(4));
+//                    datasSummer.add(items.get(5));
+//
+//
+//
+//                    //summer img 클릭 리스너, iv3 fid는 위에 for문에서 참조됨
+//                    iv1 = view.findViewById(R.id.iv_01);
+//                    iv2 = view.findViewById(R.id.iv_02);
+//
+//                    iv1.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            sendPutExtra(datasSummer.get(0));
+//                        }
+//                    });
+//
+//                    iv2.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            sendPutExtra(datasSummer.get(1));
+//                        }
+//                    });
+//
+//                    iv3.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            sendPutExtra(datasSummer.get(2));
+//                        }
+//                    });
+//
+//
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ArrayList<Recipe>> call, Throwable t) {
+//                new AlertDialog.Builder(context).setMessage(t.toString()).create().show();
+//            }
+//        }); //choice part...
+//
+////        datasNormal.add(new HomeNormal(R.string.normal_01_title,R.string.normal_01_msg,R.drawable.normal01));
+////        datasNormal.add(new HomeNormal(R.string.normal_02_title,R.string.normal_02_msg,R.drawable.normal02));
+////        datasNormal.add(new HomeNormal(R.string.normal_03_title,R.string.normal_03_msg,R.drawable.normal03));
+////        datasNormal.add(new HomeNormal(R.string.normal_04_title,R.string.normal_04_msg,R.drawable.normal04));
+////        datasNormal.add(new HomeNormal(R.string.normal_05_title,R.string.normal_05_msg,R.drawable.normal05));
+////        datasNormal.add(new HomeNormal(R.string.normal_06_title,R.string.normal_06_msg,R.drawable.normal06));
+////        datasNormal.add(new HomeNormal(R.string.normal_07_title,R.string.normal_07_msg,R.drawable.normal07));
+////        datasNormal.add(new HomeNormal(R.string.normal_08_title,R.string.normal_08_msg,R.drawable.normal08));
+//
+//        AssetManager assetManager = getContext().getAssets();
+//        StringBuffer buffer = new StringBuffer();
+//        try {
+//            InputStream is = assetManager.open("home_tab.json");
+//            InputStreamReader isr = new InputStreamReader(is);
+//            BufferedReader reader = new BufferedReader(isr);
+//
+//
+//            while (true){
+//                String line = reader.readLine();
+//                if (line==null)break;
+//                buffer.append(line+"\n");
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        Gson gson = new Gson();
+//        Recipe[] recipes = gson.fromJson(buffer.toString(),Recipe[].class);
+//        for (Recipe e : recipes){
+//            datasNormal.add(e);
+//
+//        }
+//
+//        Log.e("aaa",datasNormal.get(0).firsttitle+", "+datasNormal.get(1).firstimg+", "+datasNormal.get(1).firsttitle);
+//
+//        normalAdapter = new HomeNormalAdapter(context,datasNormal);
+//
+//
+//        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context,2);
+//        recyclergrid.setLayoutManager(layoutManager);
+//
+//        recyclergrid.setAdapter(normalAdapter);
+//
+//        dialog.dismiss();
+//    }
+
+
 
     @Override
     public void onDestroyView() {
@@ -142,137 +305,19 @@ public class HomeTabFragment extends Fragment {
         datasChoice.removeAll(datasChoice);
         recyclerAdapter.notifyDataSetChanged();
 
+        datasSummer.removeAll(datasSummer);
+        normalAdapter2.notifyDataSetChanged();
+
         datasNormal.removeAll(datasNormal);
         normalAdapter.notifyDataSetChanged();
 
 
     }
 
-    void getdata(){
-        // Choice recyclerview
-        Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
-        RetrofitService retrofitService = retrofit.create(RetrofitService.class);
-        Call<ArrayList<Recipe>> call = retrofitService.getChoiceArray();
-        call.enqueue(new Callback<ArrayList<Recipe>>() {
-            @Override
-            public void onResponse(Call<ArrayList<Recipe>> call, Response<ArrayList<Recipe>> response) {
-                if (response != null) {
-                    ArrayList<Recipe> items = response.body();
 
-                    for (int i=0;i<3;i++){
-                        datasChoice.add(items.get(i));
-                    }
-
-
-                    //Log.e("length",datas.get(0).img+", "+datas.get(1).img+", "+datas.get(2).img);
-
-                    recyclerView = view.findViewById(R.id.recycle01);
-                    recyclerAdapter = new HomeChoiceAdapter(context,datasChoice);
-                    recyclerAdapter.notifyDataSetChanged();
-                    recyclerView.setAdapter(recyclerAdapter);
-
-                    //java.lang.IllegalStateException: An instance of OnFlingListener already set. 에러 수정하는 코드, setOnFlingListener(null);
-                    recyclerView.setOnFlingListener(null);
-
-                    SnapHelper snapHelper = new PagerSnapHelper();
-                    snapHelper.attachToRecyclerView(recyclerView);
-
-
-                    datasSummer.add(items.get(3));
-                    datasSummer.add(items.get(4));
-                    datasSummer.add(items.get(5));
-                    for (int i=3 ; i<6 ; i++){
-                        iv3 = view.findViewById(R.id.iv_01+(i-3));
-                        Glide.with(view).load(imgUrl+"/recipeData/"+datasSummer.get(i-3).firstimg).into(iv3);
-
-                        tv = view.findViewById(R.id.tv_01+(i-3));
-                        tv.setText(datasSummer.get(i-3).firsttitle);
-                    }
-
-
-                    //summer img 클릭 리스너, iv3 fid는 위에 for문에서 참조됨
-                    iv1 = view.findViewById(R.id.iv_01);
-                    iv2 = view.findViewById(R.id.iv_02);
-
-                    iv1.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            sendPutExtra(datasSummer.get(0));
-                        }
-                    });
-
-                    iv2.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            sendPutExtra(datasSummer.get(1));
-                        }
-                    });
-
-                    iv3.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            sendPutExtra(datasSummer.get(2));
-                        }
-                    });
-
-
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<Recipe>> call, Throwable t) {
-                new AlertDialog.Builder(context).setMessage(t.toString()).create().show();
-            }
-        }); //choice part...
-
-//        datasNormal.add(new HomeNormal(R.string.normal_01_title,R.string.normal_01_msg,R.drawable.normal01));
-//        datasNormal.add(new HomeNormal(R.string.normal_02_title,R.string.normal_02_msg,R.drawable.normal02));
-//        datasNormal.add(new HomeNormal(R.string.normal_03_title,R.string.normal_03_msg,R.drawable.normal03));
-//        datasNormal.add(new HomeNormal(R.string.normal_04_title,R.string.normal_04_msg,R.drawable.normal04));
-//        datasNormal.add(new HomeNormal(R.string.normal_05_title,R.string.normal_05_msg,R.drawable.normal05));
-//        datasNormal.add(new HomeNormal(R.string.normal_06_title,R.string.normal_06_msg,R.drawable.normal06));
-//        datasNormal.add(new HomeNormal(R.string.normal_07_title,R.string.normal_07_msg,R.drawable.normal07));
-//        datasNormal.add(new HomeNormal(R.string.normal_08_title,R.string.normal_08_msg,R.drawable.normal08));
-
-        AssetManager assetManager = getContext().getAssets();
-        StringBuffer buffer = new StringBuffer();
-        try {
-            InputStream is = assetManager.open("recipe.json");
-            InputStreamReader isr = new InputStreamReader(is);
-            BufferedReader reader = new BufferedReader(isr);
-
-
-            while (true){
-                String line = reader.readLine();
-                if (line==null)break;
-                buffer.append(line+"\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Gson gson = new Gson();
-        Recipe[] recipes = gson.fromJson(buffer.toString(),Recipe[].class);
-        for (Recipe e : recipes){
-            datasNormal.add(e);
-        }
-
-        Log.e("aaa",datasNormal.get(0).firsttitle+", "+datasNormal.get(1).firstimg+", "+datasNormal.get(1).firsttitle);
-
-        normalAdapter = new HomeNormalAdapter(context,datasNormal);
-
-
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context,2);
-        recyclergrid.setLayoutManager(layoutManager);
-
-        recyclergrid.setAdapter(normalAdapter);
-
-        dialog.dismiss();
-    }
 
     void sendPutExtra(Recipe data){
-        Intent intent = new Intent(context, HomeChoiceRecipe.class);
+        Intent intent = new Intent(mContext, HomeChoiceRecipe.class);
         intent.putExtra("firstsub",data.firstsub);
         intent.putExtra("firsttile",data.firsttitle);
         intent.putExtra("firstimg",data.firstimg);
@@ -302,6 +347,6 @@ public class HomeTabFragment extends Fragment {
         intent.putExtra("eighthimg",data.eighthimg);
         intent.putExtra("eighthmsg",data.eighthmsg);
 
-        context.startActivity(intent);
+        mContext.startActivity(intent);
     }
 }

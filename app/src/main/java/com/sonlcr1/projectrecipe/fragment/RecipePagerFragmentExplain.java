@@ -1,6 +1,7 @@
 package com.sonlcr1.projectrecipe.fragment;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ public class RecipePagerFragmentExplain extends Fragment {
     RecyclerView recyclerView;
     RecipeAdapter adapter;
     Context context;
+    Resources resources;
 
 
     @Nullable
@@ -38,6 +40,7 @@ public class RecipePagerFragmentExplain extends Fragment {
         activity = getActivity();
         recyclerView = view.findViewById(R.id.recycle);
         context = getContext();
+        resources = getResources();
 
         String thirdimg = activity.getIntent().getStringExtra("thirdimg");
         String thirdmsg = activity.getIntent().getStringExtra("thirdmsg");
@@ -53,15 +56,25 @@ public class RecipePagerFragmentExplain extends Fragment {
         String eighthmsg = activity.getIntent().getStringExtra("eighthmsg");
 
         //third에 데이터 add하기
-        datas.add(new Recipe(null,null,null,null,null,null,null,null,null,thirdimg,thirdmsg,null,null,null,null,null,null,null,null,null,null));
-        datas.add(new Recipe(null,null,null,null,null,null,null,null,null,fourthimg,fourthmsg,null,null,null,null,null,null,null,null,null,null));
-        datas.add(new Recipe(null,null,null,null,null,null,null,null,null,fifthimg,fifthmsg,null,null,null,null,null,null,null,null,null,null));
-        datas.add(new Recipe(null,null,null,null,null,null,null,null,null,sixthimg,sixthmsg,null,null,null,null,null,null,null,null,null,null));
-        if (seventhimg!=null&&seventhmsg!=null) datas.add(new Recipe(null,null,null,null,null,null,null,null,null,seventhimg,seventhmsg,null,null,null,null,null,null,null,null,null,null));
-        if (eighthimg!=null&&eighthmsg!=null) datas.add(new Recipe(null,null,null,null,null,null,null,null,null,eighthimg,eighthmsg,null,null,null,null,null,null,null,null,null,null));
+//        datas.add(new Recipe(null,null,null,null,null,null,null,null,null,thirdimg,thirdmsg,null,null,null,null,null,null,null,null,null,null));
+//        datas.add(new Recipe(null,null,null,null,null,null,null,null,null,fourthimg,fourthmsg,null,null,null,null,null,null,null,null,null,null));
+//        datas.add(new Recipe(null,null,null,null,null,null,null,null,null,fifthimg,fifthmsg,null,null,null,null,null,null,null,null,null,null));
+//        datas.add(new Recipe(null,null,null,null,null,null,null,null,null,sixthimg,sixthmsg,null,null,null,null,null,null,null,null,null,null));
+//        if (seventhimg!=null&&seventhmsg!=null) datas.add(new Recipe(null,null,null,null,null,null,null,null,null,seventhimg,seventhmsg,null,null,null,null,null,null,null,null,null,null));
+//        if (eighthimg!=null&&eighthmsg!=null) datas.add(new Recipe(null,null,null,null,null,null,null,null,null,eighthimg,eighthmsg,null,null,null,null,null,null,null,null,null,null));
+
+
+        datas.add(new Recipe(thirdimg,thirdmsg));
+        datas.add(new Recipe(fourthimg,fourthmsg));
+        datas.add(new Recipe(fifthimg,fifthmsg));
+        datas.add(new Recipe(sixthimg,sixthmsg));
+        if (seventhimg!=null&&seventhmsg!=null) datas.add(new Recipe(seventhimg,seventhmsg));
+        if (eighthimg!=null&&eighthmsg!=null) datas.add(new Recipe(eighthimg,eighthmsg));
+
+
 
         if (!thirdimg.isEmpty()) {
-            adapter = new RecipeAdapter(context,datas);
+            adapter = new RecipeAdapter(context,datas,resources);
             recyclerView.setAdapter(adapter);
             SnapHelper snapHelper = new PagerSnapHelper();
             snapHelper.attachToRecyclerView(recyclerView);
