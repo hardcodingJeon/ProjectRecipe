@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
+<!--android:descendantFocusability="blocksDescendants"-->
 
             <!-- 천연 탈취제  -->
             <androidx.recyclerview.widget.RecyclerView
@@ -146,16 +147,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/incl03"
-                android:nestedScrollingEnabled="false"
                 />
-            <!-- 레이아웃 매니저 설정 할것 -->
-
-
-
-
-
-
-
+            <!--android:nestedScrollingEnabled="false"-->
 
 
         </RelativeLayout>

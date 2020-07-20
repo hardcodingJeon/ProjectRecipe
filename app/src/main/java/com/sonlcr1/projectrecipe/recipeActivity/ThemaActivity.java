@@ -49,6 +49,7 @@ public class ThemaActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycle);
 
+        //intent로 Arraylist 보낸거 받기
         lists = (ArrayList<ThemaIcon2.Apple>)getIntent().getSerializableExtra("list");
         ThemaRecipeAdapter adapter = new ThemaRecipeAdapter(this,lists,getResources());
         recyclerView.setAdapter(adapter);
