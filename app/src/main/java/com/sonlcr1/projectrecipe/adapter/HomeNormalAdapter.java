@@ -14,9 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.sonlcr1.projectrecipe.R;
-import com.sonlcr1.projectrecipe.member.Recipe;
-import com.sonlcr1.projectrecipe.member.Recipe2;
-import com.sonlcr1.projectrecipe.member.ThemaIcon2;
+import com.sonlcr1.projectrecipe.member.VORecipe;
 import com.sonlcr1.projectrecipe.recipeActivity.RecipeActivity;
 
 import java.util.ArrayList;
@@ -24,13 +22,13 @@ import java.util.ArrayList;
 public class HomeNormalAdapter extends RecyclerView.Adapter {
 
     Context context;
-    ArrayList<ThemaIcon2> datas;
+    ArrayList<VORecipe> datas;
     Resources resources;
 
     public HomeNormalAdapter() {
     }
 
-    public HomeNormalAdapter(Context context, ArrayList<ThemaIcon2> datas, Resources resources) {
+    public HomeNormalAdapter(Context context, ArrayList<VORecipe> datas, Resources resources) {
         this.context = context;
         this.datas = datas;
         this.resources = resources;
@@ -47,7 +45,7 @@ public class HomeNormalAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         VH vh = (VH)holder;
-        ThemaIcon2 item = datas.get(position);
+        VORecipe item = datas.get(position);
 
         vh.msg.setText(item.list.get(0).sub);
         vh.title.setText(item.list.get(0).title);
@@ -75,7 +73,7 @@ public class HomeNormalAdapter extends RecyclerView.Adapter {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ThemaIcon2 data = datas.get(getLayoutPosition());
+                    VORecipe data = datas.get(getLayoutPosition());
                     Intent intent = new Intent(context,RecipeActivity.class);
                     intent.putExtra("list",data.list.get(0));
 

@@ -9,20 +9,10 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.sonlcr1.projectrecipe.R;
-import com.sonlcr1.projectrecipe.RetrofitHelper;
-import com.sonlcr1.projectrecipe.RetrofitService;
 import com.sonlcr1.projectrecipe.adapter.HomeChoiceRecipeAdapter2;
 import com.sonlcr1.projectrecipe.adapter.HomeChoiceRecipeAdapter3;
-import com.sonlcr1.projectrecipe.member.Recipe;
-import com.sonlcr1.projectrecipe.member.Recipe2;
-import com.sonlcr1.projectrecipe.member.ThemaIcon2;
-
-import java.util.ArrayList;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
+import com.sonlcr1.projectrecipe.adapter.TVRecipeViewpagerAdapter;
+import com.sonlcr1.projectrecipe.member.VORecipe;
 
 public class RecipeActivity extends AppCompatActivity {
 
@@ -47,9 +37,13 @@ public class RecipeActivity extends AppCompatActivity {
         });
 
 
-        ThemaIcon2.Apple list = (ThemaIcon2.Apple)getIntent().getSerializableExtra("list");
+        VORecipe.Apple list = (VORecipe.Apple)getIntent().getSerializableExtra("list");
+        //Log.e("video",list.video);
 
-        if (list.recipe == null){
+        if (list.video!=null && list.video.equals("on")){   //!=null 해주니까 nullpoint안뜸
+            TVRecipeViewpagerAdapter adapter = new TVRecipeViewpagerAdapter(getSupportFragmentManager());
+            viewPager.setAdapter(adapter);
+        }else if (list.recipe == null){
             HomeChoiceRecipeAdapter2 recipeAdapter2 = new HomeChoiceRecipeAdapter2(getSupportFragmentManager());
             viewPager.setAdapter(recipeAdapter2);
         }else{

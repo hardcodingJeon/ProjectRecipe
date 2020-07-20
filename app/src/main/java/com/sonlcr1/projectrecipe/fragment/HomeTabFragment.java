@@ -2,7 +2,6 @@ package com.sonlcr1.projectrecipe.fragment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -26,10 +25,7 @@ import com.google.gson.Gson;
 import com.sonlcr1.projectrecipe.R;
 import com.sonlcr1.projectrecipe.adapter.HomeChoiceAdapter;
 import com.sonlcr1.projectrecipe.adapter.HomeNormalAdapter;
-import com.sonlcr1.projectrecipe.member.Recipe;
-import com.sonlcr1.projectrecipe.member.Recipe2;
-import com.sonlcr1.projectrecipe.member.ThemaIcon2;
-import com.sonlcr1.projectrecipe.recipeActivity.RecipeActivity;
+import com.sonlcr1.projectrecipe.member.VORecipe;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -53,11 +49,11 @@ public class HomeTabFragment extends Fragment {
     RecyclerView recyclerView2;
 
     //ArrayList<Recipe> datas = new ArrayList<>();
-    ArrayList<ThemaIcon2> datasChoice = new ArrayList<>();
-    ArrayList<ThemaIcon2> datasSummer = new ArrayList<>();
+    ArrayList<VORecipe> datasChoice = new ArrayList<>();
+    ArrayList<VORecipe> datasSummer = new ArrayList<>();
 
     //ArrayList<HomeSummer> datasSummer = new ArrayList<>();
-    ArrayList<ThemaIcon2> datasNormal = new ArrayList<>();
+    ArrayList<VORecipe> datasNormal = new ArrayList<>();
 
 
     HomeChoiceAdapter recyclerAdapter;
@@ -133,7 +129,7 @@ public class HomeTabFragment extends Fragment {
             e.printStackTrace();
         }
         Gson gson = new Gson();
-        ThemaIcon2[] recipes = gson.fromJson(buffer.toString(), ThemaIcon2[].class);
+        VORecipe[] recipes = gson.fromJson(buffer.toString(), VORecipe[].class);
         for (int i=0;i<3;i++){
             datasChoice.add(recipes[i]);
         }

@@ -17,20 +17,19 @@ import androidx.recyclerview.widget.SnapHelper;
 
 import com.sonlcr1.projectrecipe.R;
 import com.sonlcr1.projectrecipe.adapter.RecipeAdapter;
-import com.sonlcr1.projectrecipe.member.Recipe;
-import com.sonlcr1.projectrecipe.member.Recipe2;
-import com.sonlcr1.projectrecipe.member.ThemaIcon2;
+import com.sonlcr1.projectrecipe.member.VORecipe;
 
 import java.util.ArrayList;
 
 public class RecipePagerFragmentExplain extends Fragment {
 
     FragmentActivity activity;
-    ArrayList<Recipe> datas = new ArrayList<>();
     RecyclerView recyclerView;
     RecipeAdapter adapter;
     Context context;
     Resources resources;
+    ArrayList<VORecipe.Candy> recipe;
+    VORecipe.Apple list;
 
 
     @Nullable
@@ -44,24 +43,23 @@ public class RecipePagerFragmentExplain extends Fragment {
         context = getContext();
         resources = getResources();
 
-        ThemaIcon2.Apple list = (ThemaIcon2.Apple)activity.getIntent().getSerializableExtra("list");
+        list = (VORecipe.Apple)activity.getIntent().getSerializableExtra("list");
 
-        if (!list.recipe.get(0).recipeimg.isEmpty()) {
-            adapter = new RecipeAdapter(context,list.recipe,resources);
-            recyclerView.setAdapter(adapter);
-            SnapHelper snapHelper = new PagerSnapHelper();
-            snapHelper.attachToRecyclerView(recyclerView);
-        }
 
         return view;
 
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        datas.removeAll(datas);
-        adapter.notifyDataSetChanged();
-
+    public void onResume() {
+        super.onResume();
+        recipe = list.recipe;
+        if (!recipe.get(0).recipeimg.isEmpty()) {
+            adapter = new RecipeAdapter(context,recipe,resources);
+            recyclerView.setAdapter(adapter);
+            SnapHelper snapHelper = new PagerSnapHelper();
+            snapHelper.attachToRecyclerView(recyclerView);
+        }
     }
+
 }

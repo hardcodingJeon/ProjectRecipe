@@ -12,10 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.sonlcr1.projectrecipe.R;
-import com.sonlcr1.projectrecipe.member.Recipe2;
-import com.sonlcr1.projectrecipe.member.ThemaIcon2;
-
-import java.util.ArrayList;
+import com.sonlcr1.projectrecipe.member.VORecipe;
 
 public class RecipePagerFragmentMaterials extends Fragment {
 
@@ -36,7 +33,7 @@ public class RecipePagerFragmentMaterials extends Fragment {
         tvSour = view.findViewById(R.id.tv_sour);
         tvSourMsg = view.findViewById(R.id.tv_sourMsg);
 
-        ThemaIcon2.Apple list = (ThemaIcon2.Apple)activity.getIntent().getSerializableExtra("list");
+        VORecipe.Apple list = (VORecipe.Apple)activity.getIntent().getSerializableExtra("list");
 
         tvEss.setText(list.materials.essential);
         tvEssMsg.setText(list.materials.essentialmsg);

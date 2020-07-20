@@ -1,6 +1,8 @@
 package com.sonlcr1.projectrecipe.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,22 +14,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.sonlcr1.projectrecipe.R;
-import com.sonlcr1.projectrecipe.member.HomeNormal;
-import com.sonlcr1.projectrecipe.member.TV;
+import com.sonlcr1.projectrecipe.member.VORecipe;
+import com.sonlcr1.projectrecipe.recipeActivity.RecipeActivity;
 
 import java.util.ArrayList;
 
 public class TVAdapter extends RecyclerView.Adapter {
 
     Context context;
-    ArrayList<TV> datas;
+    ArrayList<VORecipe> datas;
+    Resources resources;
 
     public TVAdapter() {
     }
 
-    public TVAdapter(Context context, ArrayList<TV> datas) {
+    public TVAdapter(Context context, ArrayList<VORecipe> datas, Resources resources) {
         this.context = context;
         this.datas = datas;
+        this.resources = resources;
     }
 
     @NonNull
@@ -41,10 +45,12 @@ public class TVAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         VH vh = (VH)holder;
+        VORecipe.Apple data = datas.get(position).list.get(0);
 
-        vh.msg.setText(datas.get(position).msg);
-        vh.title.setText(datas.get(position).title);
-        Glide.with(context).load(datas.get(position).img).into(vh.iv);
+        vh.msg.setText(data.sub);
+        vh.title.setText(data.title);
+        int resId = resources.getIdentifier(data.img,"drawable","com.sonlcr1.projectrecipe");
+        Glide.with(context).load(resId).into(vh.iv);
     }
 
     @Override
@@ -62,6 +68,16 @@ public class TVAdapter extends RecyclerView.Adapter {
             msg = itemView.findViewById(R.id.tv_msg);
             title = itemView.findViewById(R.id.tv_title);
             iv = itemView.findViewById(R.id.iv);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    VORecipe.Apple list = datas.get(getLayoutPosition()).list.get(0);
+                    Intent intent = new Intent(context, RecipeActivity.class);
+                    intent.putExtra("list",list);
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }

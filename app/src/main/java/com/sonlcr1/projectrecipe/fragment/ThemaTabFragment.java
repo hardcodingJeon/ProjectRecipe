@@ -16,8 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.sonlcr1.projectrecipe.R;
 import com.sonlcr1.projectrecipe.adapter.ThemaIconAdapter;
-import com.sonlcr1.projectrecipe.member.ThemaIcon;
-import com.sonlcr1.projectrecipe.member.ThemaIcon2;
+import com.sonlcr1.projectrecipe.member.VORecipe;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,7 +26,7 @@ import java.util.ArrayList;
 
 public class ThemaTabFragment extends Fragment {
 
-    ArrayList<ThemaIcon2> datas = new ArrayList<>();
+    ArrayList<VORecipe> datas = new ArrayList<>();
 
     ThemaIconAdapter iconAdapter;
     RecyclerView recyclerView;
@@ -43,26 +42,6 @@ public class ThemaTabFragment extends Fragment {
         recyclerView.setNestedScrollingEnabled(false);
 
         getdata();
-
-
-//        datas.add(new ThemaIcon(R.string.icontitle_01,R.drawable.a01juice));
-//        datas.add(new ThemaIcon(R.string.icontitle_02,R.drawable.a02desert));
-//        datas.add(new ThemaIcon(R.string.icontitle_03,R.drawable.a03beer));
-//        datas.add(new ThemaIcon(R.string.icontitle_04,R.drawable.a04rice));
-//        datas.add(new ThemaIcon(R.string.icontitle_05,R.drawable.a05ggigae));
-//        datas.add(new ThemaIcon(R.string.icontitle_06,R.drawable.a06guk));
-//        datas.add(new ThemaIcon(R.string.icontitle_07,R.drawable.a07banchan));
-//        datas.add(new ThemaIcon(R.string.icontitle_08,R.drawable.a08kimchijangacci));
-//        datas.add(new ThemaIcon(R.string.icontitle_09,R.drawable.a09bokkem));
-//        datas.add(new ThemaIcon(R.string.icontitle_10,R.drawable.a10nuddle));
-
-//        iconAdapter = new ThemaIconAdapter(context, datas);
-//        iconAdapter.notifyDataSetChanged();
-//
-//        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context, 2);
-//
-//        recyclerView.setLayoutManager(layoutManager);
-//        recyclerView.setAdapter(iconAdapter);
 
 
         return view;
@@ -93,8 +72,8 @@ public class ThemaTabFragment extends Fragment {
         }
 
         Gson gson = new Gson();
-        ThemaIcon2[] themaIcon2 = gson.fromJson(buffer.toString(), ThemaIcon2[].class);
-        for (ThemaIcon2 e:themaIcon2){
+        VORecipe[] VORecipe = gson.fromJson(buffer.toString(), VORecipe[].class);
+        for (VORecipe e: VORecipe){
             datas.add(e);
         }
 

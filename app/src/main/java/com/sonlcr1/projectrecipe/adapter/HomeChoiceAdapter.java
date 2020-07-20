@@ -14,9 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.sonlcr1.projectrecipe.R;
-import com.sonlcr1.projectrecipe.member.Recipe;
-import com.sonlcr1.projectrecipe.member.Recipe2;
-import com.sonlcr1.projectrecipe.member.ThemaIcon2;
+import com.sonlcr1.projectrecipe.member.VORecipe;
 import com.sonlcr1.projectrecipe.recipeActivity.RecipeActivity;
 
 import java.util.ArrayList;
@@ -24,13 +22,13 @@ import java.util.ArrayList;
 public class HomeChoiceAdapter extends RecyclerView.Adapter {
 
     Context context;
-    ArrayList<ThemaIcon2> datas = new ArrayList<>();
+    ArrayList<VORecipe> datas = new ArrayList<>();
     Resources resources;
 
     public HomeChoiceAdapter() {
     }
 
-    public HomeChoiceAdapter(Context context, ArrayList<ThemaIcon2> datas, Resources resources) {
+    public HomeChoiceAdapter(Context context, ArrayList<VORecipe> datas, Resources resources) {
         this.context = context;
         this.datas = datas;
         this.resources = resources;
@@ -48,7 +46,7 @@ public class HomeChoiceAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         VH vh = (VH)holder;
-        ThemaIcon2 items = datas.get(position);
+        VORecipe items = datas.get(position);
 
         vh.tvSub.setText(items.list.get(0).sub);
         vh.tvTitle.setText(items.list.get(0).title);
@@ -81,7 +79,7 @@ public class HomeChoiceAdapter extends RecyclerView.Adapter {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ThemaIcon2 data = datas.get(getLayoutPosition());
+                    VORecipe data = datas.get(getLayoutPosition());
 
                     Intent intent = new Intent(context, RecipeActivity.class);
                     intent.putExtra("list",data.list.get(0));

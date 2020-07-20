@@ -14,24 +14,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.sonlcr1.projectrecipe.R;
-import com.sonlcr1.projectrecipe.member.ThemaIcon;
-import com.sonlcr1.projectrecipe.member.ThemaIcon2;
+import com.sonlcr1.projectrecipe.member.VORecipe;
 import com.sonlcr1.projectrecipe.recipeActivity.ThemaActivity;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
 public class ThemaIconAdapter extends RecyclerView.Adapter {
 
     Context context;
-    ArrayList<ThemaIcon2> datas;
+    ArrayList<VORecipe> datas;
     Resources resources;
 
     public ThemaIconAdapter() {
     }
 
-    public ThemaIconAdapter(Context context, ArrayList<ThemaIcon2> datas, Resources resources) {
+    public ThemaIconAdapter(Context context, ArrayList<VORecipe> datas, Resources resources) {
         this.context = context;
         this.datas = datas;
         this.resources = resources;
@@ -71,7 +68,7 @@ public class ThemaIconAdapter extends RecyclerView.Adapter {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ThemaIcon2 data = datas.get(getLayoutPosition());
+                    VORecipe data = datas.get(getLayoutPosition());
                     Intent intent = new Intent(context, ThemaActivity.class);
                     intent.putExtra("title",data.maintitle);
                     intent.putExtra("list",data.list);

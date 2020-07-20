@@ -14,8 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.sonlcr1.projectrecipe.R;
-import com.sonlcr1.projectrecipe.member.Recipe;
-import com.sonlcr1.projectrecipe.member.ThemaIcon2;
+import com.sonlcr1.projectrecipe.member.VORecipe;
 import com.sonlcr1.projectrecipe.recipeActivity.RecipeActivity;
 
 import java.util.ArrayList;
@@ -23,13 +22,13 @@ import java.util.ArrayList;
 public class ThemaRecipeAdapter extends RecyclerView.Adapter {
 
     Context context;
-    ArrayList<ThemaIcon2.Apple> datas;
+    ArrayList<VORecipe.Apple> datas;
     Resources resources;
 
     public ThemaRecipeAdapter() {
     }
 
-    public ThemaRecipeAdapter(Context context, ArrayList<ThemaIcon2.Apple> datas, Resources resources) {
+    public ThemaRecipeAdapter(Context context, ArrayList<VORecipe.Apple> datas, Resources resources) {
         this.context = context;
         this.datas = datas;
         this.resources = resources;
@@ -46,7 +45,7 @@ public class ThemaRecipeAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         VH vh = (VH)holder;
-        ThemaIcon2.Apple item = datas.get(position);
+        VORecipe.Apple item = datas.get(position);
 
         vh.msg.setText(item.sub);
         vh.title.setText(item.title);
@@ -74,7 +73,7 @@ public class ThemaRecipeAdapter extends RecyclerView.Adapter {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ThemaIcon2.Apple data = datas.get(getLayoutPosition());
+                    VORecipe.Apple data = datas.get(getLayoutPosition());
 
                     Intent intent = new Intent(context,RecipeActivity.class);
                     intent.putExtra("list",data);

@@ -1,0 +1,74 @@
+[
+  { "no" : "0", "maintitle" : "tv" ,"mainimg":null,"list":
+  [
+    { "video":"on","uri":"https://www.youtube.com/watch?v=rBw0VdUaMFo","img": "tv01", "sub": "끈적한 여름을 날려버릴 시원함!", "title": "오이냉국",
+      "materials":{"essential": "필수재료","essentialmsg": "오이1개, 대파(5cm)",
+        "choice": "선택재료","choicemsg": "홍고추1개",
+        "source": "양념","sourcemsg": "식초(5), 설탕(5), 소금(1), 매실액(1), 다진마늘(0.3)"}
+    }
+  ]
+  },
+
+  { "no" : "1", "maintitle" : "tv" ,"mainimg":null,"list":
+  [
+    { "video":"on","uri":"https://www.youtube.com/watch?v=9Qw7PNMpX5s","img": "tv02", "sub": "매콤달콤 입맛 살리는", "title": "제육볶음",
+      "materials":{"essential": "필수재료","essentialmsg": "돼지고기(200g), 양파(50g), 파(1대), 풋고추(1개),마늘종(20g)",
+        "choice": "선택재료","choicemsg": "설탕(1),고춧가루(1),고추장(2),간장(0.4),청주(0.6),다진파(1),다진마늘(2),다진생강(0.5),물엿(1),참기름(2),깨소금(2)"}
+    }
+  ]
+  },
+
+  { "no" : "2", "maintitle" : "tv" ,"mainimg":null,"list":
+  [
+    { "video":"on","uri":"https://www.youtube.com/watch?v=Fy5Q-pGBHnk","img": "tv03", "sub": "곰팡이 완전 정복!", "title": "천연탈취제",
+      "materials":{"essential": "필수재료","essentialmsg": "오이1개, 대파(5cm)",
+        "choice": "선택재료","choicemsg": "홍고추1개",
+        "source": "양념","sourcemsg": "식초(5), 설탕(5), 소금(1), 매실액(1), 다진마늘(0.3)"}
+    }
+  ]
+  },
+
+  { "no" : "3", "maintitle" : "tv" ,"mainimg":null,"list":
+  [
+    { "video":"on","uri":"https://www.youtube.com/watch?v=8Mo0jh5i_uY","img": "tv04", "sub": "바다의 보물", "title": "전복 손질법",
+      "materials":{"essential": "필수재료","essentialmsg": "양파(1/2개), 대파(20cm), 오징어(1마리), 돼지고기(삼겹살300g)","choice": "선택재료","choicemsg": "당근(1/4개), 참깨(약간)","source": "양념","sourcemsg": "설탕(1.5)+고춧가루(2)+맛술(2)+액젓(1.5)+간장(2)+다진마늘(1)+참기름(약간)"},
+      "recipe": [{"num":"1","recipeimg": "c_recipe0201","recipemsg": "양파는 굵게 채 썰고, 당근은 반달 모양으로 썰고, 대파는 어슷 썰고,"},
+        {"num":"2","recipeimg": "c_recipe0202","recipemsg": "오징어는 흐르는 물에 씻어 껍질을 벗기고 벌집 모양으로 칼집을 낸 뒤 먹기 좋게 자르고, 돼지고기는 5cm 길이로 썰고,"},
+        {"num":"3","recipeimg": "c_recipe0203","recipemsg": "오징어, 삼겹살은 양념장에 넣어 10분간 숙성하고,"},
+        {"num":"4","recipeimg": "c_recipe0204","recipemsg": "센 불로 달군 팬에 식용유(1)를 두른 뒤 양파, 당근을 넣어 가볍게 볶고,"},
+        {"num":"5","recipeimg": "c_recipe0205","recipemsg": "양파가 반투명해지면 오징어, 삼겹살, 물(1/2컵)을 넣어 8분간 볶고,"},
+        {"num":"6","recipeimg": "c_recipe0206","recipemsg": "그릇에 담아 대파를 올린 뒤 참깨를 뿌려 마무리."}]
+    }
+  ]
+  },
+
+  { "no" : "4", "maintitle" : "tv" ,"mainimg":null,"list":
+  [
+    { "video":"on","uri":"https://www.youtube.com/watch?v=QGoxqpy5vss","img": "tv05", "sub": "딱딱하게 굳은 모닝빵도 OK!", "title": "모닝빵 멘보샤",
+      "materials":{"essential": "필수재료","essentialmsg": "양파(1/2개), 대파(20cm), 오징어(1마리), 돼지고기(삼겹살300g)","choice": "선택재료","choicemsg": "당근(1/4개), 참깨(약간)","source": "양념","sourcemsg": "설탕(1.5)+고춧가루(2)+맛술(2)+액젓(1.5)+간장(2)+다진마늘(1)+참기름(약간)"},
+      "recipe": [{"num":"1","recipeimg": "c_recipe0201","recipemsg": "양파는 굵게 채 썰고, 당근은 반달 모양으로 썰고, 대파는 어슷 썰고,"},
+        {"num":"2","recipeimg": "c_recipe0202","recipemsg": "오징어는 흐르는 물에 씻어 껍질을 벗기고 벌집 모양으로 칼집을 낸 뒤 먹기 좋게 자르고, 돼지고기는 5cm 길이로 썰고,"},
+        {"num":"3","recipeimg": "c_recipe0203","recipemsg": "오징어, 삼겹살은 양념장에 넣어 10분간 숙성하고,"},
+        {"num":"4","recipeimg": "c_recipe0204","recipemsg": "센 불로 달군 팬에 식용유(1)를 두른 뒤 양파, 당근을 넣어 가볍게 볶고,"},
+        {"num":"5","recipeimg": "c_recipe0205","recipemsg": "양파가 반투명해지면 오징어, 삼겹살, 물(1/2컵)을 넣어 8분간 볶고,"},
+        {"num":"6","recipeimg": "c_recipe0206","recipemsg": "그릇에 담아 대파를 올린 뒤 참깨를 뿌려 마무리."}]
+    }
+  ]
+  },
+
+  { "no" : "5", "maintitle" : "tv" ,"mainimg":null,"list":
+  [
+    { "video":"on","uri":"https://www.youtube.com/watch?v=hQ1JR7SgMBU","img": "tv06", "sub": "간편 재료로 맛있게", "title": "고추참치볶음밥",
+      "materials":{"essential": "필수재료","essentialmsg": "양파(1/2개), 대파(20cm), 오징어(1마리), 돼지고기(삼겹살300g)","choice": "선택재료","choicemsg": "당근(1/4개), 참깨(약간)","source": "양념","sourcemsg": "설탕(1.5)+고춧가루(2)+맛술(2)+액젓(1.5)+간장(2)+다진마늘(1)+참기름(약간)"},
+      "recipe": [{"num":"1","recipeimg": "c_recipe0201","recipemsg": "양파는 굵게 채 썰고, 당근은 반달 모양으로 썰고, 대파는 어슷 썰고,"},
+        {"num":"2","recipeimg": "c_recipe0202","recipemsg": "오징어는 흐르는 물에 씻어 껍질을 벗기고 벌집 모양으로 칼집을 낸 뒤 먹기 좋게 자르고, 돼지고기는 5cm 길이로 썰고,"},
+        {"num":"3","recipeimg": "c_recipe0203","recipemsg": "오징어, 삼겹살은 양념장에 넣어 10분간 숙성하고,"},
+        {"num":"4","recipeimg": "c_recipe0204","recipemsg": "센 불로 달군 팬에 식용유(1)를 두른 뒤 양파, 당근을 넣어 가볍게 볶고,"},
+        {"num":"5","recipeimg": "c_recipe0205","recipemsg": "양파가 반투명해지면 오징어, 삼겹살, 물(1/2컵)을 넣어 8분간 볶고,"},
+        {"num":"6","recipeimg": "c_recipe0206","recipemsg": "그릇에 담아 대파를 올린 뒤 참깨를 뿌려 마무리."}]
+    }
+  ]
+  }
+]
+
+
