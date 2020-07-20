@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.sonlcr1.projectrecipe.R;
 import com.sonlcr1.projectrecipe.member.Recipe;
+import com.sonlcr1.projectrecipe.member.Recipe2;
+import com.sonlcr1.projectrecipe.member.ThemaIcon2;
 import com.sonlcr1.projectrecipe.recipeActivity.RecipeActivity;
 
 import java.util.ArrayList;
@@ -22,13 +24,13 @@ import java.util.ArrayList;
 public class HomeNormalAdapter extends RecyclerView.Adapter {
 
     Context context;
-    ArrayList<Recipe> datas;
+    ArrayList<ThemaIcon2> datas;
     Resources resources;
 
     public HomeNormalAdapter() {
     }
 
-    public HomeNormalAdapter(Context context, ArrayList<Recipe> datas, Resources resources) {
+    public HomeNormalAdapter(Context context, ArrayList<ThemaIcon2> datas, Resources resources) {
         this.context = context;
         this.datas = datas;
         this.resources = resources;
@@ -45,12 +47,11 @@ public class HomeNormalAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         VH vh = (VH)holder;
-        Recipe item = datas.get(position);
-        //String imgUrl = "http://jeondh9971.dothome.co.kr/Recipe/recipeData/" + datas.get(position).firstimg;
+        ThemaIcon2 item = datas.get(position);
 
-        vh.msg.setText(item.firstsub);
-        vh.title.setText(item.firsttitle);
-        int resId = resources.getIdentifier(item.firstimg,"drawable","com.sonlcr1.projectrecipe");
+        vh.msg.setText(item.list.get(0).sub);
+        vh.title.setText(item.list.get(0).title);
+        int resId = resources.getIdentifier(item.list.get(0).img,"drawable","com.sonlcr1.projectrecipe");
         Glide.with(context).load(resId).into(vh.iv);
 
     }
@@ -74,37 +75,9 @@ public class HomeNormalAdapter extends RecyclerView.Adapter {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Recipe data = datas.get(getLayoutPosition());
-
-                    Intent intent = new Intent(context, RecipeActivity.class);
-                    intent.putExtra("firstsub",data.firstsub);
-                    intent.putExtra("firsttile",data.firsttitle);
-                    intent.putExtra("firstimg",data.firstimg);
-
-                    intent.putExtra("secondessential",data.secondessential);
-                    intent.putExtra("secondessentialmsg",data.secondessentialmsg);
-                    intent.putExtra("secondchoice",data.secondchoice);
-                    intent.putExtra("secondchoicemsg",data.secondchoicemsg);
-                    intent.putExtra("secondsource",data.secondsource);
-                    intent.putExtra("secondsourcemsg",data.secondsourcemsg);
-
-                    intent.putExtra("thirdimg",data.thirdimg);
-                    intent.putExtra("thirdmsg",data.thirdmsg);
-
-                    intent.putExtra("fourthimg",data.fourthimg);
-                    intent.putExtra("fourthmsg",data.fourthmsg);
-
-                    intent.putExtra("fifthimg",data.fifthimg);
-                    intent.putExtra("fifthmsg",data.fifthmsg);
-
-                    intent.putExtra("sixthimg",data.sixthimg);
-                    intent.putExtra("sixthmsg",data.sixthmsg);
-
-                    intent.putExtra("seventhimg",data.seventhimg);
-                    intent.putExtra("seventhmsg",data.seventhmsg);
-
-                    intent.putExtra("eighthimg",data.eighthimg);
-                    intent.putExtra("eighthmsg",data.eighthmsg);
+                    ThemaIcon2 data = datas.get(getLayoutPosition());
+                    Intent intent = new Intent(context,RecipeActivity.class);
+                    intent.putExtra("list",data.list.get(0));
 
                     context.startActivity(intent);
                 }

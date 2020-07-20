@@ -12,6 +12,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.sonlcr1.projectrecipe.R;
+import com.sonlcr1.projectrecipe.member.Recipe2;
+import com.sonlcr1.projectrecipe.member.ThemaIcon2;
+
+import java.util.ArrayList;
 
 public class RecipePagerFragmentMaterials extends Fragment {
 
@@ -32,12 +36,14 @@ public class RecipePagerFragmentMaterials extends Fragment {
         tvSour = view.findViewById(R.id.tv_sour);
         tvSourMsg = view.findViewById(R.id.tv_sourMsg);
 
-        tvEss.setText(activity.getIntent().getStringExtra("secondessential"));
-        tvEssMsg.setText(activity.getIntent().getStringExtra("secondessentialmsg"));
-        tvChoi.setText(activity.getIntent().getStringExtra("secondchoice"));
-        tvChoiMsg.setText(activity.getIntent().getStringExtra("secondchoicemsg"));
-        tvSour.setText(activity.getIntent().getStringExtra("secondsource"));
-        tvSourMsg.setText(activity.getIntent().getStringExtra("secondsourcemsg"));
+        ThemaIcon2.Apple list = (ThemaIcon2.Apple)activity.getIntent().getSerializableExtra("list");
+
+        tvEss.setText(list.materials.essential);
+        tvEssMsg.setText(list.materials.essentialmsg);
+        tvChoi.setText(list.materials.choice);
+        tvChoiMsg.setText(list.materials.choicemsg);
+        tvSour.setText(list.materials.source);
+        tvSourMsg.setText(list.materials.sourcemsg);
 
         return view;
     }

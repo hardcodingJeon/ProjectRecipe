@@ -27,6 +27,8 @@ import com.sonlcr1.projectrecipe.R;
 import com.sonlcr1.projectrecipe.adapter.HomeChoiceAdapter;
 import com.sonlcr1.projectrecipe.adapter.HomeNormalAdapter;
 import com.sonlcr1.projectrecipe.member.Recipe;
+import com.sonlcr1.projectrecipe.member.Recipe2;
+import com.sonlcr1.projectrecipe.member.ThemaIcon2;
 import com.sonlcr1.projectrecipe.recipeActivity.RecipeActivity;
 
 import java.io.BufferedReader;
@@ -51,11 +53,11 @@ public class HomeTabFragment extends Fragment {
     RecyclerView recyclerView2;
 
     //ArrayList<Recipe> datas = new ArrayList<>();
-    ArrayList<Recipe> datasChoice = new ArrayList<>();
-    ArrayList<Recipe> datasSummer = new ArrayList<>();
+    ArrayList<ThemaIcon2> datasChoice = new ArrayList<>();
+    ArrayList<ThemaIcon2> datasSummer = new ArrayList<>();
 
     //ArrayList<HomeSummer> datasSummer = new ArrayList<>();
-    ArrayList<Recipe> datasNormal = new ArrayList<>();
+    ArrayList<ThemaIcon2> datasNormal = new ArrayList<>();
 
 
     HomeChoiceAdapter recyclerAdapter;
@@ -114,18 +116,11 @@ public class HomeTabFragment extends Fragment {
         mContext = context;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        //getdata();
-    }
-
     void getdata(){
         AssetManager assetManager = mContext.getAssets();
         StringBuffer buffer = new StringBuffer();
         try {
-            InputStream inputStream = assetManager.open("home_tab_recipe.json");
+            InputStream inputStream = assetManager.open("home_tab_recipe2.json");
             InputStreamReader isr = new InputStreamReader(inputStream);
             BufferedReader reader = new BufferedReader(isr);
 
@@ -138,7 +133,7 @@ public class HomeTabFragment extends Fragment {
             e.printStackTrace();
         }
         Gson gson = new Gson();
-        Recipe[] recipes = gson.fromJson(buffer.toString(),Recipe[].class);
+        ThemaIcon2[] recipes = gson.fromJson(buffer.toString(), ThemaIcon2[].class);
         for (int i=0;i<3;i++){
             datasChoice.add(recipes[i]);
         }
@@ -171,120 +166,6 @@ public class HomeTabFragment extends Fragment {
 
     }
 
-//    void getdata_ex(){
-//        // Choice recyclerview
-//        Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
-//        RetrofitService retrofitService = retrofit.create(RetrofitService.class);
-//        Call<ArrayList<Recipe>> call = retrofitService.getChoiceArray();
-//        call.enqueue(new Callback<ArrayList<Recipe>>() {
-//            @Override
-//            public void onResponse(Call<ArrayList<Recipe>> call, Response<ArrayList<Recipe>> response) {
-//                if (response != null) {
-//                    ArrayList<Recipe> items = response.body();
-//
-//                    for (int i=0;i<3;i++){
-//                        datasChoice.add(items.get(i));
-//                    }
-//
-//
-//                    //Log.e("length",datas.get(0).img+", "+datas.get(1).img+", "+datas.get(2).img);
-//
-//
-//
-//
-//                    //java.lang.IllegalStateException: An instance of OnFlingListener already set. 에러 수정하는 코드, setOnFlingListener(null);
-//
-//
-//
-//
-//
-//                    datasSummer.add(items.get(3));
-//                    datasSummer.add(items.get(4));
-//                    datasSummer.add(items.get(5));
-//
-//
-//
-//                    //summer img 클릭 리스너, iv3 fid는 위에 for문에서 참조됨
-//                    iv1 = view.findViewById(R.id.iv_01);
-//                    iv2 = view.findViewById(R.id.iv_02);
-//
-//                    iv1.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            sendPutExtra(datasSummer.get(0));
-//                        }
-//                    });
-//
-//                    iv2.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            sendPutExtra(datasSummer.get(1));
-//                        }
-//                    });
-//
-//                    iv3.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            sendPutExtra(datasSummer.get(2));
-//                        }
-//                    });
-//
-//
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ArrayList<Recipe>> call, Throwable t) {
-//                new AlertDialog.Builder(context).setMessage(t.toString()).create().show();
-//            }
-//        }); //choice part...
-//
-////        datasNormal.add(new HomeNormal(R.string.normal_01_title,R.string.normal_01_msg,R.drawable.normal01));
-////        datasNormal.add(new HomeNormal(R.string.normal_02_title,R.string.normal_02_msg,R.drawable.normal02));
-////        datasNormal.add(new HomeNormal(R.string.normal_03_title,R.string.normal_03_msg,R.drawable.normal03));
-////        datasNormal.add(new HomeNormal(R.string.normal_04_title,R.string.normal_04_msg,R.drawable.normal04));
-////        datasNormal.add(new HomeNormal(R.string.normal_05_title,R.string.normal_05_msg,R.drawable.normal05));
-////        datasNormal.add(new HomeNormal(R.string.normal_06_title,R.string.normal_06_msg,R.drawable.normal06));
-////        datasNormal.add(new HomeNormal(R.string.normal_07_title,R.string.normal_07_msg,R.drawable.normal07));
-////        datasNormal.add(new HomeNormal(R.string.normal_08_title,R.string.normal_08_msg,R.drawable.normal08));
-//
-//        AssetManager assetManager = getContext().getAssets();
-//        StringBuffer buffer = new StringBuffer();
-//        try {
-//            InputStream is = assetManager.open("home_tab_recipe.json");
-//            InputStreamReader isr = new InputStreamReader(is);
-//            BufferedReader reader = new BufferedReader(isr);
-//
-//
-//            while (true){
-//                String line = reader.readLine();
-//                if (line==null)break;
-//                buffer.append(line+"\n");
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        Gson gson = new Gson();
-//        Recipe[] recipes = gson.fromJson(buffer.toString(),Recipe[].class);
-//        for (Recipe e : recipes){
-//            datasNormal.add(e);
-//
-//        }
-//
-//        Log.e("aaa",datasNormal.get(0).firsttitle+", "+datasNormal.get(1).firstimg+", "+datasNormal.get(1).firsttitle);
-//
-//        normalAdapter = new HomeNormalAdapter(context,datasNormal);
-//
-//
-//        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context,2);
-//        recyclergrid.setLayoutManager(layoutManager);
-//
-//        recyclergrid.setAdapter(normalAdapter);
-//
-//        dialog.dismiss();
-//    }
 
 
 
@@ -303,39 +184,4 @@ public class HomeTabFragment extends Fragment {
 
     }
 
-
-
-    void sendPutExtra(Recipe data){
-        Intent intent = new Intent(mContext, RecipeActivity.class);
-        intent.putExtra("firstsub",data.firstsub);
-        intent.putExtra("firsttile",data.firsttitle);
-        intent.putExtra("firstimg",data.firstimg);
-
-        intent.putExtra("secondessential",data.secondessential);
-        intent.putExtra("secondessentialmsg",data.secondessentialmsg);
-        intent.putExtra("secondchoice",data.secondchoice);
-        intent.putExtra("secondchoicemsg",data.secondchoicemsg);
-        intent.putExtra("secondsource",data.secondsource);
-        intent.putExtra("secondsourcemsg",data.secondsourcemsg);
-
-        intent.putExtra("thirdimg",data.thirdimg);
-        intent.putExtra("thirdmsg",data.thirdmsg);
-
-        intent.putExtra("fourthimg",data.fourthimg);
-        intent.putExtra("fourthmsg",data.fourthmsg);
-
-        intent.putExtra("fifthimg",data.fifthimg);
-        intent.putExtra("fifthmsg",data.fifthmsg);
-
-        intent.putExtra("sixthimg",data.sixthimg);
-        intent.putExtra("sixthmsg",data.sixthmsg);
-
-        intent.putExtra("seventhimg",data.seventhimg);
-        intent.putExtra("seventhmsg",data.seventhmsg);
-
-        intent.putExtra("eighthimg",data.eighthimg);
-        intent.putExtra("eighthmsg",data.eighthmsg);
-
-        mContext.startActivity(intent);
-    }
 }

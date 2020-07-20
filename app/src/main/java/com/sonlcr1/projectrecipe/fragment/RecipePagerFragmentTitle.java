@@ -15,6 +15,10 @@ import androidx.fragment.app.FragmentActivity;
 import com.bumptech.glide.Glide;
 import com.sonlcr1.projectrecipe.R;
 import com.sonlcr1.projectrecipe.member.Recipe;
+import com.sonlcr1.projectrecipe.member.Recipe2;
+import com.sonlcr1.projectrecipe.member.ThemaIcon2;
+
+import java.util.ArrayList;
 
 public class RecipePagerFragmentTitle extends Fragment {
 
@@ -36,19 +40,15 @@ public class RecipePagerFragmentTitle extends Fragment {
         activity = getActivity();
 
 
-        String sub = activity.getIntent().getExtras().getString("firstsub");
-        String title = activity.getIntent().getStringExtra("firsttile");
-        String img = activity.getIntent().getExtras().getString("firstimg");
+        ThemaIcon2.Apple list = (ThemaIcon2.Apple)activity.getIntent().getSerializableExtra("list");
+
+        String title = list.title;
+        String sub = list.sub;
+        String img = list.img;
         tvsub.setText(sub);
         tvtitle.setText(title);
         int resId = getResources().getIdentifier(img,"drawable","com.sonlcr1.projectrecipe");
         Glide.with(view).load(resId).into(iv);
-        //tvsub.setText(intent.getStringExtra("tvSub"));
-//        tvtitle.setText(intent.getStringExtra("tvTitle"));
-//        Glide.with(view).load(imgUrl+intent.getStringExtra("img")).into(iv);
-//        tvsub.setText(data.firstsub);
-//        tvtitle.setText(data.firsttitle);
-//        Glide.with(view).load(imgUrl+"/recipeData/"+data.firstimg).into(iv);
 
 
         return view;

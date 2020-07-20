@@ -47,7 +47,6 @@ public class ThemaRecipeAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         VH vh = (VH)holder;
         ThemaIcon2.Apple item = datas.get(position);
-        //String imgUrl = "http://jeondh9971.dothome.co.kr/Recipe/recipeData/" + datas.get(position).firstimg;
 
         vh.msg.setText(item.sub);
         vh.title.setText(item.title);
@@ -77,37 +76,9 @@ public class ThemaRecipeAdapter extends RecyclerView.Adapter {
                 public void onClick(View v) {
                     ThemaIcon2.Apple data = datas.get(getLayoutPosition());
 
-//                    Intent intent = new Intent(context, RecipeActivity.class);
-//                    intent.putExtra("firstsub",data.firstsub);
-//                    intent.putExtra("firsttile",data.firsttitle);
-//                    intent.putExtra("firstimg",data.firstimg);
-//
-//                    intent.putExtra("secondessential",data.secondessential);
-//                    intent.putExtra("secondessentialmsg",data.secondessentialmsg);
-//                    intent.putExtra("secondchoice",data.secondchoice);
-//                    intent.putExtra("secondchoicemsg",data.secondchoicemsg);
-//                    intent.putExtra("secondsource",data.secondsource);
-//                    intent.putExtra("secondsourcemsg",data.secondsourcemsg);
-//
-//                    intent.putExtra("thirdimg",data.thirdimg);
-//                    intent.putExtra("thirdmsg",data.thirdmsg);
-//
-//                    intent.putExtra("fourthimg",data.fourthimg);
-//                    intent.putExtra("fourthmsg",data.fourthmsg);
-//
-//                    intent.putExtra("fifthimg",data.fifthimg);
-//                    intent.putExtra("fifthmsg",data.fifthmsg);
-//
-//                    intent.putExtra("sixthimg",data.sixthimg);
-//                    intent.putExtra("sixthmsg",data.sixthmsg);
-//
-//                    intent.putExtra("seventhimg",data.seventhimg);
-//                    intent.putExtra("seventhmsg",data.seventhmsg);
-//
-//                    intent.putExtra("eighthimg",data.eighthimg);
-//                    intent.putExtra("eighthmsg",data.eighthmsg);
-//
-//                    context.startActivity(intent);
+                    Intent intent = new Intent(context,RecipeActivity.class);
+                    intent.putExtra("list",data);
+                    context.startActivity(intent);
                 }
             });
         }
