@@ -58,6 +58,9 @@ public class BoardTabFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycle);
         context = getContext();
 
+        //서버에서 데이터 얻어 와서 recyclerview에 띄우기
+        //activity();
+
         return view;
     }
 
@@ -80,6 +83,48 @@ public class BoardTabFragment extends Fragment {
                 refreshLayout.setRefreshing(false);
             }
         });
+    }
+
+    void activity(){
+        Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
+        RetrofitService retrofitService = retrofit.create(RetrofitService.class);
+        Call<ArrayList<Board>> call = retrofitService.loadData();
+        call.enqueue(new Callback<ArrayList<Board>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Board>> call, Response<ArrayList<Board>> response) {
+                if (response.isSuccessful()) {
+                    ArrayList<Board> items = response.body();
+                    for (Board e : items) {
+
+                        datas.add(0, e);
+
+                        boardAdapter = new BoardAdapter(context, datas);
+                        boardAdapter.notifyDataSetChanged();
+
+                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, RecyclerView.VERTICAL, false);
+                        recyclerView.setLayoutManager(layoutManager);
+                        recyclerView.setAdapter(boardAdapter);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Board>> call, Throwable t) {
+
+            }
+        });
+
+//        TextView tv = view.findViewById(R.id.tv);
+//        ImageView iv = view.findViewById(R.id.iv);
+//        tv.setText(datas.get(0).msg);
+//        Glide.with(context).load(imgUrl+datas.get(0).imgmain).into(iv);
+//
+//        boardAdapter = new BoardAdapter(context,datas);
+//        boardAdapter.notifyDataSetChanged();
+//
+//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,RecyclerView.VERTICAL,false);
+//        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.setAdapter(boardAdapter);
     }
 
 }

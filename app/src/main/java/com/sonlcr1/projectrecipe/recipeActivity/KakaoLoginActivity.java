@@ -24,6 +24,7 @@ import com.sonlcr1.projectrecipe.R;
 import java.security.MessageDigest;
 
 public class KakaoLoginActivity extends AppCompatActivity {
+    //ㅇㅇ
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,7 @@ public class KakaoLoginActivity extends AppCompatActivity {
                 intent.putExtra("nickName",userAccount.getProfile().getNickname());
                 intent.putExtra("img",userAccount.getProfile().getProfileImageUrl());
                 startActivity(intent);
+                finish();
             }
         });
     }
