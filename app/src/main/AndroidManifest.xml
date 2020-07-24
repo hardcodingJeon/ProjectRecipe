@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
 
     <application
+        android:name=".KakaoLoginInit"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="ProjectRecipe"
@@ -15,9 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/NoactionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".recipeActivity.ThemaActivity"></activity>
-        <activity android:name=".recipeActivity.RecipeActivity"></activity>
-        <activity android:name=".recipeActivity.BoardEdit"></activity>
+        <activity android:name=".recipeActivity.KakaoLoginActivity"></activity>
+        <activity android:name=".recipeActivity.ThemaActivity" />
+        <activity android:name=".recipeActivity.RecipeActivity" />
+        <activity android:name=".recipeActivity.BoardEdit" />
         <activity
             android:name=".recipeActivity.IntroActivity"
             android:theme="@style/NoactionBar">
@@ -42,6 +44,10 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/paths" />
         </provider>
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakao_app_key" />
     </application>
 
 </manifest>

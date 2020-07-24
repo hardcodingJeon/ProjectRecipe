@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">ProjectRecipe</string>
+    <string name="kakao_app_key">541e1db52b91d2d798f5a00887c6eeae</string>
 
     <!-- home normal recycler data -->
     <string name="normal_01_msg">곰팡이 완전 정복!</string>

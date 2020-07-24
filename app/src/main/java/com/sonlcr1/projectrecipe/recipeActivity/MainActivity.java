@@ -1,11 +1,17 @@
-package com.sonlcr1.projectrecipe;
+package com.sonlcr1.projectrecipe.recipeActivity;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import android.os.Bundle;
-
 import com.google.android.material.tabs.TabLayout;
+import com.kakao.usermgmt.UserManagement;
+import com.kakao.usermgmt.callback.LogoutResponseCallback;
+import com.sonlcr1.projectrecipe.R;
 import com.sonlcr1.projectrecipe.adapter.PagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,7 +40,23 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout.setupWithViewPager(viewPager);
 
-        
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.setup:
+                UserManagement.getInstance().requestLogout(new LogoutResponseCallback() {
+                    @Override
+                    public void onCompleteLogout() {
+                        Toast.makeText(MainActivity.this, "로그아웃 완료", Toast.LENGTH_SHORT).show();
+                        //로그아웃은 완료 되지만 Toast는 안뜬다.
+                    }
+                });
+                break;
+        }
+
+
+        return super.onOptionsItemSelected(item);
     }
 }

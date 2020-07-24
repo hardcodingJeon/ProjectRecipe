@@ -1,34 +1,32 @@
-package com.sonlcr1.projectrecipe;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.FileProvider;
-import androidx.loader.content.CursorLoader;
+package com.sonlcr1.projectrecipe.recipeActivity;
 
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.FileProvider;
+import androidx.loader.content.CursorLoader;
+
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.sonlcr1.projectrecipe.R;
+import com.sonlcr1.projectrecipe.RetrofitHelper;
+import com.sonlcr1.projectrecipe.RetrofitService;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -214,7 +212,7 @@ public class BoardEdit extends AppCompatActivity {
         }else{
             imgUri = FileProvider.getUriForFile(this,getPackageName(),file);
         }
-        new AlertDialog.Builder(this).setMessage("uri : "+imgUri.toString()+"\nfile : "+file.toString()).create().show();
+        //new AlertDialog.Builder(this).setMessage("uri : "+imgUri.toString()+"\nfile : "+file.toString()).create().show();
     }
 
     //테이블 안에 있는 칼럼값을 읽어옴

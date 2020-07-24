@@ -25,6 +25,7 @@ import com.sonlcr1.projectrecipe.RetrofitHelper;
 import com.sonlcr1.projectrecipe.RetrofitService;
 import com.sonlcr1.projectrecipe.adapter.BoardAdapter;
 import com.sonlcr1.projectrecipe.member.Board;
+import com.sonlcr1.projectrecipe.recipeActivity.KakaoLoginActivity;
 
 import java.util.ArrayList;
 
@@ -67,7 +68,7 @@ public class BoardTabFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, BoardEdit.class);
+                Intent intent = new Intent(context, KakaoLoginActivity.class);
                 startActivity(intent);
             }
         });

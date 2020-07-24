@@ -1,7 +1,4 @@
-package com.sonlcr1.projectrecipe;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+package com.sonlcr1.projectrecipe.recipeActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +6,12 @@ import android.os.Handler;
 import android.os.Message;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.Glide;
+import com.sonlcr1.projectrecipe.recipeActivity.MainActivity;
+import com.sonlcr1.projectrecipe.R;
 
 public class IntroActivity extends AppCompatActivity {
 
