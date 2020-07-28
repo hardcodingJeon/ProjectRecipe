@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -46,6 +47,7 @@ public class BoardTabFragment extends Fragment {
     FloatingActionButton fab;
 
     SwipeRefreshLayout refreshLayout;
+    RelativeLayout relativeLayout;
 
     @Nullable
     @Override
@@ -54,12 +56,13 @@ public class BoardTabFragment extends Fragment {
 
         fab = view.findViewById(R.id.fabBtn);
         refreshLayout = view.findViewById(R.id.refresh);
+        relativeLayout = view.findViewById(R.id.relative01);
 
         recyclerView = view.findViewById(R.id.recycle);
         context = getContext();
 
         //서버에서 데이터 얻어 와서 recyclerview에 띄우기
-        //activity();
+        activity();
 
         return view;
     }
@@ -71,7 +74,7 @@ public class BoardTabFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, KakaoLoginActivity.class);
+                Intent intent = new Intent(context, BoardEdit.class);
                 startActivity(intent);
             }
         });
@@ -80,6 +83,7 @@ public class BoardTabFragment extends Fragment {
             @Override
             public void onRefresh() {
                 datas.removeAll(datas);
+                activity();
                 refreshLayout.setRefreshing(false);
             }
         });

@@ -13,6 +13,8 @@ import com.bumptech.glide.Glide;
 import com.sonlcr1.projectrecipe.recipeActivity.MainActivity;
 import com.sonlcr1.projectrecipe.R;
 
+import ru.santaev.outlinespan.OutlineSpan;
+
 public class IntroActivity extends AppCompatActivity {
 
     ImageView iv;
@@ -22,10 +24,6 @@ public class IntroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 
-        iv = findViewById(R.id.iv);
-        Glide.with(IntroActivity.this).load(R.drawable.moana).into(iv);
-        iv.setAdjustViewBounds(true);
-        iv.setBackgroundColor(getResources().getColor(R.color.recipeSymbol));
         handler.sendEmptyMessageDelayed(10,3000);
 
     }

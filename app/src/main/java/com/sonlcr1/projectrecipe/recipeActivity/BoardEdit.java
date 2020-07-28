@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
@@ -51,6 +53,7 @@ public class BoardEdit extends AppCompatActivity {
     ImageView iv;
     BottomNavigationView bnv;
     File file;
+    String msg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,47 +85,54 @@ public class BoardEdit extends AppCompatActivity {
                 finish();
                 break;
             case R.id.resister: //서버에 올리는 작업
-                String msg = et.getText().toString();
-
-                Map<String ,String> datapart = new HashMap<>();
-                datapart.put("msg",msg);
-
-                Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
-                RetrofitService retrofitService = retrofit.create(RetrofitService.class);
-
-                //업로드할 파일
-                MultipartBody.Part filepart = null;
-                if (imgFile != null) {
-                    File file = new File(imgFile);
-                    RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"),file);
-
-                    filepart = MultipartBody.Part.createFormData("imgmain",file.getName(),requestBody);
-                }
-
-                Call<String> call = retrofitService.insertData(datapart,filepart);
-                call.enqueue(new Callback<String>() {
-                    @Override
-                    public void onResponse(Call<String> call, Response<String> response) {
-                        if (response.isSuccessful()) {
-                            //Toast.makeText(BoardEdit.this, "업로드가 성공하였습니다.", Toast.LENGTH_SHORT).show();
-                            //finish();
-
-                            Toast.makeText(BoardEdit.this,response.body() , Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<String> call, Throwable t) {
-                        //Toast.makeText(BoardEdit.this, "업로드가 실패 하였습니다.", Toast.LENGTH_SHORT).show();
-
-                    }
-                });
-
-
+                msg = et.getText().toString();
+                uploadData();
                 break;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    void uploadData(){
+        if (!msg.isEmpty()){
+            Map<String ,String> datapart = new HashMap<>();
+            datapart.put("msg",msg);
+            Log.e("msg",datapart.get("msg"));
+
+            Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
+            RetrofitService retrofitService = retrofit.create(RetrofitService.class);
+
+            //업로드할 파일
+            MultipartBody.Part filepart = null;
+            if (imgFile != null) {
+                File file = new File(imgFile);
+                RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"),file);
+
+                filepart = MultipartBody.Part.createFormData("imgmain",file.getName(),requestBody);
+            }
+
+            Call<String> call = retrofitService.insertData(datapart,filepart);
+            call.enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
+                    if (response.isSuccessful()) {
+                        //Toast.makeText(BoardEdit.this, "업로드가 성공하였습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BoardEdit.this,response.body() , Toast.LENGTH_SHORT).show();
+                        finish();
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<String> call, Throwable t) {
+                    Toast.makeText(BoardEdit.this, t.toString(), Toast.LENGTH_SHORT).show();
+//                    new AlertDialog.Builder(BoardEdit.this).setMessage(t.toString()).create().show();
+                    finish();
+                }
+            });
+        }else{
+            Toast.makeText(this, "내용을 입력하세요", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

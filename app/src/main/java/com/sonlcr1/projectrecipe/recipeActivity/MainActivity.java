@@ -1,6 +1,7 @@
 package com.sonlcr1.projectrecipe.recipeActivity;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -13,6 +14,8 @@ import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.LogoutResponseCallback;
 import com.sonlcr1.projectrecipe.R;
 import com.sonlcr1.projectrecipe.adapter.PagerAdapter;
+
+import ru.santaev.outlinespan.OutlineSpan;
 
 public class MainActivity extends AppCompatActivity {
     //이미지가 안뜸
@@ -43,16 +46,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.home_menu,menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.setup:
-                UserManagement.getInstance().requestLogout(new LogoutResponseCallback() {
-                    @Override
-                    public void onCompleteLogout() {
-                        Toast.makeText(MainActivity.this, "로그아웃 완료", Toast.LENGTH_SHORT).show();
-                        //로그아웃은 완료 되지만 Toast는 안뜬다.
-                    }
-                });
+//                UserManagement.getInstance().requestLogout(new LogoutResponseCallback() {
+//                    @Override
+//                    public void onCompleteLogout() {
+//                        Toast.makeText(MainActivity.this, "로그아웃 완료", Toast.LENGTH_SHORT).show();
+//                        //로그아웃은 완료 되지만 Toast는 안뜬다.
+//                    }
+//                });
                 break;
         }
 

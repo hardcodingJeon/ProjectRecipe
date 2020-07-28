@@ -5,15 +5,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IntroActivity">
+    tools:context=".recipeActivity.IntroActivity">
 
     <ImageView
         android:id="@+id/iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/intro"
+        />
+
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="밥 심"
+        android:textSize="50sp"
+        android:textColor="#FF000000"
+        android:fontFamily="@font/customfont"
         android:layout_centerInParent="true"
-        android:adjustViewBounds="true"
-        android:background="@color/recipeSymbol"
+        android:paddingBottom="50dp"
         />
 
 </RelativeLayout>

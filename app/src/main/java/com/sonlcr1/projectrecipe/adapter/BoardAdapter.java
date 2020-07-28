@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -26,6 +27,7 @@ public class BoardAdapter extends RecyclerView.Adapter {
 
     Context context;
     ArrayList<Board> datas;
+    RelativeLayout relativeLayout;
 
     public BoardAdapter() {
     }
@@ -39,6 +41,7 @@ public class BoardAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemview = LayoutInflater.from(context).inflate(R.layout.recycler_board,parent,false);
+        relativeLayout = itemview.findViewById(R.id.relative01);
         return new VH(itemview);
     }
 
@@ -50,13 +53,15 @@ public class BoardAdapter extends RecyclerView.Adapter {
         String userimg = imgUrl + item.userimg;
         String imgmain = imgUrl + item.imgmain;
 
+        if(item!=null&&item.userimg==null&&item.userid==null) relativeLayout.setVisibility(View.GONE);
+
         Glide.with(context).load(userimg).into(vh.circleimg);
         Glide.with(context).load(imgmain).into(vh.ivmain);
         vh.tvuser.setText(item.userid);
         vh.tvday.setText(item.date);
-        vh.tvmsg.setText(item.msg);
+        vh.tvmsg.setText(item.msg.substring(1,item.msg.length()-1));
         vh.tvfavor.setText(""+item.favornum);
-        vh.tvchat.setText(item.chatnum);
+        //vh.tvchat.setText(item.chatnum);
         vh.tbfavor.setChecked(item.favorstate==1?true:false);
 
     }
@@ -81,7 +86,7 @@ public class BoardAdapter extends RecyclerView.Adapter {
             tvday = itemView.findViewById(R.id.tv_day);
             tvmsg = itemView.findViewById(R.id.tv_msg);
             tvfavor = itemView.findViewById(R.id.tv_favor);
-            tvchat = itemView.findViewById(R.id.tv_chat);
+            //tvchat = itemView.findViewById(R.id.tv_chat);
             tbfavor = itemView.findViewById(R.id.tb_favor);
 
             tbfavor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
