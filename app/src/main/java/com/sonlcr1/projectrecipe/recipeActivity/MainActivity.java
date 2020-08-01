@@ -10,12 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
-import com.kakao.usermgmt.UserManagement;
-import com.kakao.usermgmt.callback.LogoutResponseCallback;
 import com.sonlcr1.projectrecipe.R;
 import com.sonlcr1.projectrecipe.adapter.PagerAdapter;
 
-import ru.santaev.outlinespan.OutlineSpan;
 
 public class MainActivity extends AppCompatActivity {
     //이미지가 안뜸
