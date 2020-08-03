@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     ViewPager viewPager;
     TabLayout tabLayout;
     PagerAdapter pagerAdapter;
+    Toolbar toolbar;
 
     //MyAdapter adapter;
     @Override
@@ -32,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager = findViewById(R.id.viewpager);
         tabLayout = findViewById(R.id.tablayout);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);    // 기존 타이틀 없애야 메뉴 보인다.
 
         pagerAdapter = new PagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
@@ -44,12 +49,12 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.home_menu,menu);
-        return true;
-    }
+//로그아웃 메뉴
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.home_menu,menu);
+//        return true;
+//    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
