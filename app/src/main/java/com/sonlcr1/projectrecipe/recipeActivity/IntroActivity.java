@@ -13,7 +13,6 @@ import com.bumptech.glide.Glide;
 import com.sonlcr1.projectrecipe.recipeActivity.MainActivity;
 import com.sonlcr1.projectrecipe.R;
 
-import ru.santaev.outlinespan.OutlineSpan;
 
 public class IntroActivity extends AppCompatActivity {
 

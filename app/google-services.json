@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "999095582591",
+    "firebase_url": "https://projectrecipe-2cd51.firebaseio.com",
+    "project_id": "projectrecipe-2cd51",
+    "storage_bucket": "projectrecipe-2cd51.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:999095582591:android:ea7d79ead8bb4dcc9b644a",
+        "android_client_info": {
+          "package_name": "com.sonlcr1.projectrecipe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "999095582591-4e7nbrd1c0399mrm4kgni0at200ost9u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRYAcwn0I_4QIU1qyDDUUMa6K6x-QrY5o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "999095582591-4e7nbrd1c0399mrm4kgni0at200ost9u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
