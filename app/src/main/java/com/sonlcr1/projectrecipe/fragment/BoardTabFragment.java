@@ -81,44 +81,40 @@ public class BoardTabFragment extends Fragment {
         context = getContext();
 
         //서버에서 데이터 얻어 와서 recyclerview에 띄우기
-        activity();
+//        activity();
 
-
-
-        return view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAuth = FirebaseAuth.getInstance();
-                //로그인 최초 1회 하면 후에 다시 어플 실행시 자동로그인
-                if (mAuth.getCurrentUser() != null) {
-                    Intent intent = new Intent(context, BoardEdit.class);
-                    startActivity(intent);
-                }else{
-                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                    builder.setTitle("로그인");
-                    builder.setMessage("다양한 서비스 혜택을 위해 로그인하세요!");
-                    if (loginLayout.getParent() != null)
-                        ((ViewGroup) loginLayout.getParent()).removeView(loginLayout);
-                    builder.setView(loginLayout);
-                    signInButton = loginLayout.findViewById(R.id.btn);
-                    signInButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            trylogin();
-                            Log.e("tag","1");
-                        }
-                    });
 
-                    builder.create().show();
-                }
+                //로그인 화면
+//                mAuth = FirebaseAuth.getInstance();
+//                //로그인 최초 1회 하면 후에 다시 어플 실행시 자동로그인
+//                if (mAuth.getCurrentUser() != null) {
+//                    Intent intent = new Intent(context, BoardEdit.class);
+//                    startActivity(intent);
+//                }else{
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//                    builder.setTitle("로그인");
+//                    builder.setMessage("다양한 서비스 혜택을 위해 로그인하세요!");
+//                    if (loginLayout.getParent() != null)
+//                        ((ViewGroup) loginLayout.getParent()).removeView(loginLayout);
+//                    builder.setView(loginLayout);
+//                    signInButton = loginLayout.findViewById(R.id.btn);
+//                    signInButton.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            trylogin();
+//                            Log.e("tag","1");
+//                        }
+//                    });
+//
+//                    builder.create().show();
+//                }
 
+                Intent intent = new Intent(context,BoardEdit.class);
+                startActivity(intent);
 
             }
         });
@@ -131,6 +127,25 @@ public class BoardTabFragment extends Fragment {
                 refreshLayout.setRefreshing(false);
             }
         });
+
+        return view;
+    }
+
+
+
+//    private static OkHttpClient createOkHttpClient() {
+//        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+//        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+//        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+//        builder.addInterceptor(interceptor);
+//        return builder.build();
+//    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        activity();
     }
 
     void activity(){
@@ -144,8 +159,8 @@ public class BoardTabFragment extends Fragment {
                     ArrayList<Board> items = response.body();
                     for (Board e : items) {
 
-                        datas.add(0, e);
-
+//                        datas.add(0, e);
+                        datas.add(e);
                         boardAdapter = new BoardAdapter(context, datas);
                         boardAdapter.notifyDataSetChanged();
 
@@ -158,6 +173,7 @@ public class BoardTabFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ArrayList<Board>> call, Throwable t) {
+                Log.e("tag",t.toString());
 
             }
         });

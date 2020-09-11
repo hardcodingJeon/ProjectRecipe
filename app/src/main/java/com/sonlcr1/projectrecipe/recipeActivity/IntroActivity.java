@@ -23,7 +23,7 @@ public class IntroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 
-        handler.sendEmptyMessageDelayed(10,3000);
+//        handler.sendEmptyMessageDelayed(10,3000);
 
     }
 

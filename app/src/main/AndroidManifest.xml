@@ -18,18 +18,19 @@
         <activity android:name=".recipeActivity.ThemaActivity" />
         <activity android:name=".recipeActivity.RecipeActivity" />
         <activity android:name=".recipeActivity.BoardEdit" />
-        <activity
-            android:name=".recipeActivity.IntroActivity"
-            android:theme="@style/NoactionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--        <activity-->
+<!--            android:name=".recipeActivity.IntroActivity"-->
+<!--            android:theme="@style/NoactionBar">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
         <activity android:name=".recipeActivity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 

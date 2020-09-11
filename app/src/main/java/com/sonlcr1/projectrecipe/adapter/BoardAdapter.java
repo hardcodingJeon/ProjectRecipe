@@ -1,6 +1,7 @@
 package com.sonlcr1.projectrecipe.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +60,9 @@ public class BoardAdapter extends RecyclerView.Adapter {
         Glide.with(context).load(imgmain).into(vh.ivmain);
         vh.tvuser.setText(item.userid);
         vh.tvday.setText(item.date);
-        vh.tvmsg.setText(item.msg.substring(1,item.msg.length()-1));
+        Log.e("msg길이",item.msg.length()+"");
+//        if (item.msg.length()>0) vh.tvmsg.setText(item.msg.substring(1,item.msg.length()-1));
+        vh.tvmsg.setText(item.msg);
         vh.tvfavor.setText(""+item.favornum);
         //vh.tvchat.setText(item.chatnum);
         vh.tbfavor.setChecked(item.favorstate==1?true:false);
@@ -97,6 +100,8 @@ public class BoardAdapter extends RecyclerView.Adapter {
                     }else tvfavor.setText(""+(datas.get(getLayoutPosition()).favornum));
                 }
             });
+
+
         }
     }
 }

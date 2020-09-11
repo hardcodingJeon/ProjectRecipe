@@ -75,6 +75,8 @@ public class BoardEdit extends AppCompatActivity {
             }
         }
 
+        //todo : ProtocolException: unexpected end of stream
+
     }//oncreate...
 
     @Override
@@ -125,6 +127,7 @@ public class BoardEdit extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<String> call, Throwable t) {
+                    Log.e("tag",t.toString());
                     Toast.makeText(BoardEdit.this, t.toString(), Toast.LENGTH_SHORT).show();
 //                    new AlertDialog.Builder(BoardEdit.this).setMessage(t.toString()).create().show();
                     finish();
