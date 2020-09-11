@@ -181,8 +181,12 @@ public class BoardTabFragment extends Fragment {
     }
 
     public void trylogin(){
+//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//                .requestIdToken(getString(R.string.default_web_client_id))
+//                .requestEmail()
+//                .build();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken("999095582591-f7nlbubv43du5gunuj1e05lrq3tj5t7b.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
 
